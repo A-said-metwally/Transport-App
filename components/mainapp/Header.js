@@ -1,53 +1,75 @@
-import Link from 'next/link'
-import React,{useState} from 'react'
-import { useEffect } from 'react'
-import secureLocalStorage from 'react-secure-storage'
+import React, { useState } from 'react'
+import Typewriter from 'typewriter-effect';
+import TypewriterComponent from 'typewriter-effect';
+
 
 function Header() {
+    const kpi = ['Safety','Quality','Production','Delivery','Cost','People']
 
-  const [View, setView] = useState(false)
-  const [UserImg, setUserImg] = useState(null)
-
-
-  const getData = ()=>{
-    let decryptedData = secureLocalStorage.getItem('sessionInfo') // get decrypted data from secure local storage
-    let userInfo = decryptedData.userInfo[0].data
-    setUserImg(userInfo.Image)
-}
-useEffect(()=>{
-  getData()
-},[])
+    const [Lang, setLang] = useState(true)
 
   return (
-    <div className='  flex items-center p-2 w-screen  bg-gray-100 shadow-md ' >
-        <Link href='/userpage'>
-          <img src={UserImg} alt="user image" className=' rounded-full h-12 w-12 cursor-pointer ml-4 hover:scale-105'/>
-        </Link>
-        <ul className='flex mb-0 space-x-6 text-gray-500 text-lg font-semibold '>
-            <li><Link href="/main"><a className=' no-underline'>Home</a></Link></li>
-            <li><Link href="/"><a className=' no-underline'>View</a></Link></li>
-            <li><Link href="/"><a className=' no-underline'>Edit</a></Link></li>
-            <li onClick={()=>setView(!View)} >
-              <div className=' relative'>
-                <a className=' no-underline cursor-pointer'>Settings</a>
-                <div className={`${View? 'block': 'hidden'}  absolute z-20 top-12 right-18 w-52 border-1 border-gray-300
-                 rounded-md shadow-md bg-gray-100`} >
-                  <ul className='p-2 text-blue-500 leading-8 '>
-                    <li className='p-1 rounded-md hover:bg-gray-300 cursor-pointer'>
-                      <Link href="/"><a className=' no-underline'>Language Settings</a></Link>
-                    </li>
-                    <li className='p-1 rounded-md hover:bg-gray-300 cursor-pointer'>
-                      <Link href="/users"><a className=' no-underline'>View Users</a></Link>
-                    </li>
-                    <li className='p-1 rounded-md hover:bg-gray-300 cursor-pointer'>
-                      <Link href="/"><a className=' no-underline'>Master Data</a></Link>
-                    </li>
-                  </ul>
+    <div className='  w-full'>
+        <div className=' bg-primary p-3 w-full'>
+            <nav className="navbar navbar-expand-lg navbar-light ">
+                <div className="container-fluid">
+                    <a className="navbar-brand" href="#">
+                        <img src='/logo.png' alt='logo' className='h-14 w-20 '/>
+                    </a>
+                    <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                        <span className="navbar-toggler-icon"></span>
+                    </button>
+                    <div className="collapse navbar-collapse flex justify-between" id="navbarNav">
+                        <ul className="navbar-nav text-xl font-semibold text-white space-x-6">
+                            <li className="nav-item">
+                                <a className="nav-link active text-white" aria-current="page" href="#">Main</a>
+                            </li>
+                            {kpi.map((k)=>{
+                                return(
+                                <li className="nav-item" key={Math.random()}>
+                                    <a href={`#${k}`} className="nav-link text-white">{k}</a>
+                                </li>
+                                )
+                            })}
+                        </ul>
+                        <div className='flex items-center space-x-3'>
+                            <button className='bg-green-500 pt-1 pb-2 pl-3 pr-3 text-white font-semibold text-lg rounded-xl
+                            hover:bg-green-700 cursor-pointer '>
+                                <a className='text-white no-underline hover:no-underline ' href='mailto:ametwally@Al-Watania.com,amorgan@Al-Watania.com'>Contact CI</a>
+                            </button>
+                            <button 
+                                className=' text-white space-x-2 hover:cursor-pointer hover:underline'
+                                onClick={()=>setLang(!Lang)}
+                                >
+                                <i className="fas fa-globe"></i>
+                                <span>{Lang === true ? 'English' : 'عربى'}</span>
+                            </button>
+                        </div>
+                    </div>
                 </div>
-              </div>
-            </li>
-        </ul> 
+            </nav>
+
+            <div className=' hidden lg:flex md:flex items-center justify-center text-center md:pl-0 md:pr-0  lg:pl-24 lg:pr-24 pt-7'>
+                <h2 className=' text-6xl text-white'>
+                    <Typewriter
+                        onInit={(typewriter) => {
+                            typewriter.typeString('Key Performance Indicators (KPI) for Business Success')
+                            // .callFunction(() => {
+                            //     console.log('String typed out!');
+                            // })
+                            .pauseFor(2500)
+                            // .deleteAll()
+                            // .callFunction(() => {
+                            //     console.log('All strings were deleted');
+                            // })
+                            .start();
+                        }}
+                    />
+                </h2>
+            </div>
+        </div>
     </div>
+
   )
 }
 

@@ -12,7 +12,7 @@ module.exports = {
     extend: {
       colors:{
         ColorOne:"#f06b04",
-        
+        headerBg:'#0e70b4'
         },
     },
     

@@ -36,16 +36,12 @@ export const verifySession = ()=>{
 //verify user permissions and authority
 export function verifyPermission(router){
     let decryptedData = secureLocalStorage.getItem('sessionInfo')
-    let pages = decryptedData?.userInfo[0].data.Pages.map((page=>page.path))
-    
-    // let router = useRouter()
+    // let pages = decryptedData?.userInfo[0].data.Pages.map((page=>page.path))
+
     const currentPath = router.pathname
-    const accessability = pages?.indexOf(currentPath)
+    // const accessability = pages?.indexOf(currentPath)
     
-    console.log(pages)
-    console.log(currentPath)
-    console.log(accessability)
-    if(accessability < 0){router.push('/main')
-    alert("You haven't Permission")
-    }
+    // if(accessability < 0){router.push('/main')
+    // alert("You haven't Permission")
+    // }
 }
