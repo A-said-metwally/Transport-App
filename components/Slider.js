@@ -14,7 +14,7 @@ function Slider() {
             </ol>
             <div className="carousel-inner h-96 w-screen">
                 <div className="carousel-item active bg-orange-500 h-full w-full ">
-                    {/* <img src="..." className="d-block w-100" alt="..."/> */}
+                    <img src="/kpis.jpg" className="d-block w-100" alt="..."/>
 
                     <div className="carousel-caption d-none d-md-block mb-11">
                         <p className=' kpi-title font-bold font-serif mb-3'>Safety <span classNameName='text-yellow-300'>Kpi</span></p>
@@ -28,10 +28,10 @@ function Slider() {
                     </div>
                 </div>
 
-                <div className="carousel-item bg-green-700 h-full ">
+                {/* <div className="carousel-item bg-green-700 h-full "> */}
                     {/* <img src="..." className="d-block w-100" alt="..."/> */}
 
-                    <div className="carousel-caption d-none d-md-block mb-11 ">
+                    {/* <div className="carousel-caption d-none d-md-block mb-11 ">
                         <h5 className=' kpi-title font-bold font-serif mb-3'>Quality <span classNameName='text-yellow-300'>Kpi</span></h5>
                         <p className=' text-2xl text-justify font-serif '>
                             Quality control means that every product that is not right the first time gets withdrawn from the process. Whatever
@@ -40,13 +40,13 @@ function Slider() {
                             for doing their job which cannot be the aim. On top of that, the production department is producing nonconforming 
                             products, not the quality departmen
                         </p>
-                    </div> 
-                </div> 
+                    </div>  */}
+                {/* </div>  */}
 
-                <div className="carousel-item bg-blue-500 h-full ">
+                {/* <div className="carousel-item bg-blue-500 h-full "> */}
                     {/* <img src="..." className="d-block w-100" alt="..."/>  */}
 
-                    <div className="carousel-caption d-none d-md-block mb-11 ">
+                    {/* <div className="carousel-caption d-none d-md-block mb-11 ">
                         <h5 className=' kpi-title font-bold font-serif mb-3'>Production <span classNameName='text-yellow-300'>Kpi</span></h5>
                         <p className=' text-2xl text-justify font-serif '>
                             Quality control means that every product that is not right the first time gets withdrawn from the process. Whatever
@@ -55,12 +55,12 @@ function Slider() {
                             for doing their job which cannot be the aim. On top of that, the production department is producing nonconforming 
                             products, not the quality departmen
                         </p>
-                    </div>
-                </div> 
-                <div className="carousel-item bg-purple-500 h-full ">
+                    </div> */}
+                {/* </div>  */}
+                {/* <div className="carousel-item bg-purple-500 h-full "> */}
                     {/* <img src="..." className="d-block w-100" alt="..."/>  */}
 
-                    <div className="carousel-caption d-none d-md-block mb-11 ">
+                    {/* <div className="carousel-caption d-none d-md-block mb-11 ">
                         <h5 className=' kpi-title font-bold font-serif mb-3'>Delivery <span classNameName='text-yellow-300'>Kpi</span></h5>
                         <p className=' text-2xl text-justify font-serif '>
                             Quality control means that every product that is not right the first time gets withdrawn from the process. Whatever
@@ -69,12 +69,12 @@ function Slider() {
                             for doing their job which cannot be the aim. On top of that, the production department is producing nonconforming 
                             products, not the quality departmen
                         </p>
-                    </div>
-                </div> 
-                <div className="carousel-item bg-red-500 h-full ">
+                    </div> */}
+                {/* </div>  */}
+                {/* <div className="carousel-item bg-red-500 h-full "> */}
                     {/* <img src="..." className="d-block w-100" alt="..."/>  */}
 
-                    <div className="carousel-caption d-none d-md-block mb-11 ">
+                    {/* <div className="carousel-caption d-none d-md-block mb-11 ">
                         <h5 className=' kpi-title font-bold font-serif mb-3'>Cost <span classNameName='text-yellow-300'>Kpi</span></h5>
                         <p className=' text-2xl text-justify font-serif '>
                             Quality control means that every product that is not right the first time gets withdrawn from the process. Whatever
@@ -83,12 +83,12 @@ function Slider() {
                             for doing their job which cannot be the aim. On top of that, the production department is producing nonconforming 
                             products, not the quality departmen
                         </p>
-                    </div>
-                </div> 
-                <div className="carousel-item bg-gray-600 h-full ">
+                    </div> */}
+                {/* </div>  */}
+                {/* <div className="carousel-item bg-gray-600 h-full "> */}
                     {/* <img src="..." className="d-block w-100" alt="..."/>  */}
 
-                    <div className="carousel-caption d-none d-md-block mb-11 ">
+                    {/* <div className="carousel-caption d-none d-md-block mb-11 ">
                         <h5 className=' kpi-title font-bold font-serif mb-3'>People <span classNameName='text-yellow-300'>Kpi</span></h5>
                         <p className=' text-2xl text-justify font-serif '>
                             Quality control means that every product that is not right the first time gets withdrawn from the process. Whatever
@@ -97,8 +97,8 @@ function Slider() {
                             for doing their job which cannot be the aim. On top of that, the production department is producing nonconforming 
                             products, not the quality departmen
                         </p>
-                    </div>
-                </div> 
+                    </div> */}
+                {/* </div>  */}
 
             </div>
 

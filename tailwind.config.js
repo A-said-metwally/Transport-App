@@ -14,11 +14,14 @@ module.exports = {
         ColorOne:"#f06b04",
         headerBg:'#0e70b4'
         },
+        screens:{
+          "3xl":"2000px"
+        }
     },
     
   },
     variants:{
       extend:{},
     },
-  plugins: [],
+  plugins: [require('tailwind-scrollbar-hide')],
 };

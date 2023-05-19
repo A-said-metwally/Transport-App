@@ -23,6 +23,7 @@
     "recharts": "^2.2.0",
     "redux": "^4.2.0",
     "serverless-mysql": "^1.5.4",
+    "tailwind-scrollbar-hide": "^1.1.7",
     "typewriter-effect": "^2.19.0",
     "xlsx": "^0.17.1"
   },
