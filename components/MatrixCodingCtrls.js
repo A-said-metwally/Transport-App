@@ -2,7 +2,7 @@ import React from 'react'
 import { useState } from 'react'
 import { dept } from '../utils/data/departements'
 import { KpisMasterData } from '../utils/data/kpisMasterData'
-import { kpisInputSource } from '../utils/data/kpisMasterData'
+import { kpisInputSource } from '../utils/data/kpiSource'
 
 function MatrixCodingCtrls({addKpi}) {
 
