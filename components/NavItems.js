@@ -13,7 +13,7 @@ export default function NavItems({dep, sections}) {
                     s.secName === ''
                     ? <hr/>
                     :   <li key={s}>
-                          <Link href={`results/${dep}/${s.secName}/${s.grade}`}>
+                          <Link href={`/evaluation/${dep}/${s.secName}/${s.grade}`}>
                             <a className="dropdown-item" >{s.secName + " G " +s.grade}</a>
                           </Link>
                         </li>

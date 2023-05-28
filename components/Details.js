@@ -9,10 +9,10 @@ function Details({data}) {
                 <tr>
                 <th scope="col">Department</th>
                 <th scope="col">Section</th>
-                <th scope="col">Plant</th>
                 <th scope="col">Grade</th>
                 <th scope="col">Aspect</th>
                 <th scope="col">KPI Name</th>
+                <th scope="col">Plant</th>
                 <th scope="col">Actual</th>
                 <th scope="col">Target</th>
                 <th scope="col">Ach %</th>
@@ -25,11 +25,11 @@ function Details({data}) {
                 {data.map((d)=>(
                     <tr key = {d.index} className=' hover:bg-gray-200 font-semibold hover:text-blue-600 hover:font-bold cursor-pointer text-lg'>
                         <th scope="row" className=' pt-3 pb-3'>{d.dep}</th>
-                        <td className=' pt-3 pb-3'>{d.section}</td>
-                        <td className=' pt-3 pb-3'>{d.plant}</td>
+                        <td className=' pt-3 pb-3'>{d.sec}</td>
                         <td className=' pt-3 pb-3'>{d.grade}</td>
                         <td className=' pt-3 pb-3'>{d.aspect}</td>
-                        <td className=' pt-3 pb-3'>{d.kpiName}</td>
+                        <td className=' pt-3 pb-3'>{d.kpi}</td>
+                        <td className=' pt-3 pb-3'>{d.source}</td>
                         <td className=' text-center pt-3 pb-3 text-green-600 font-bold'>{d.actual}</td>
                         <td className=' text-center pt-3 pb-3'>{d.target}</td>
                         <td className=' text-center pt-3 pb-3'>{

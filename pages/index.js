@@ -3,18 +3,25 @@ import Header from '../components/Header'
 import Slider from '../components/Slider'
 import NavBar from '../components/NavBar'
 import OverLay from '../components/OverLay'
-import {ShoppingBagIcon} from '@heroicons/react/outline'
+import {ShoppingBagIcon, ClipboardListIcon} from '@heroicons/react/outline'
+import CiTeam from '../components/CiTeam'
+import Title from '../components/Title'
+import Spiner from '../components/Spiner'
 
 export default function Main() {   
 
   return (
   <div className='relative'>
       {/* <Slider/> */}
-      <div className = 'flex justify-end  mt-10 bg-gradient-to-r from-indigo-500 to-green-400 p-5 h-[250px] text-5xl text-[#e8e1cf] '>
+      <div className = ' relative flex justify-end  mt-10 bg-gradient-to-r from-indigo-500 to-green-400 p-5 h-[250px] text-5xl text-[#e8e1cf] '>
         <p className = 'w-[700px] leading-relaxed font-semibold font-serif'>What is a Key Performance Indicator (KPI)?</p>
+        <img src = '/kpi.jpg' alt='kpi' className=' absolute left-32 bottom-[-103px] w-[250px] h-[250px]
+         rounded-full border-4 border-amber-200 shadow-md'/>
       </div>
+      
+      <Spiner/>
 
-      <div className = 'container mt-10 p-0'>
+      <div className = 'container mt-[80px]  p-0'>
         <div className="card mb-3 w-full bg-transparent border-none" style={{'border':'none !important'}}>
           <div className="row g-0">
             <div className="col-md-8">
@@ -38,13 +45,15 @@ export default function Main() {
           </div>
         </div>
         
-        <hr className = 'text-blue-600 max-w-full h-2 mt-12 mb-12'/>
+        <Spiner/>
 
-        <div className="card mb-3 w-full bg-transparent border-none" style={{'border':'none !important'}}>
+        {/* <hr className = 'text-blue-600 max-w-full h-2 mt-12 mb-12'/> */}
+
+        <div className="card mb-12 mt-[80px] w-full bg-transparent border-none" style={{'border':'none !important'}}>
           <div className="row g-0 h-[600px]">
             <div className="col-md-6 h-full bg-[#91bd3f] text-gray-200">
               <div className="card-body ">
-                <h5 className=" text-2xl  text-center text-2xl">Good KPIS:</h5>
+                <h5 className=" text-2xl  text-center">Good KPIS:</h5>
                   <b className = 'text-xl'>Here are a few key characteristics of KPIs:</b>
                 <ul>
                   <li className = 'list-disc text-xl leading-7 pb-2'>
@@ -103,11 +112,23 @@ export default function Main() {
           </div>
         </div>
 
-        <hr className = 'text-blue-600 max-w-full h-2 mt-12 mb-12'/>
+        <Spiner/>
 
+        {/* <hr className = 'text-blue-600 max-w-full h-2 mt-12 mb-12'/> */}
       </div>
 
+      <div className = ' relative flex justify-end  mt-[80px] bg-gradient-to-r from-indigo-500 to-green-400 p-5 h-[250px] text-5xl text-[#e8e1cf] '>
+        <p className = 'w-[700px] leading-relaxed font-semibold font-serif'>Al Watania KPIs 2023</p>
+        <img src = '/kpi.jpg' alt='kpi' className=' absolute left-32 bottom-[-103px] w-[250px] h-[250px]
+         rounded-full border-4 border-amber-200 shadow-md'/>
+      </div>
 
+      <Slider/>
+
+      <Spiner/>
+
+      <Title title={"فريق التحسين المستمر"} Icon={ClipboardListIcon}/>
+      <CiTeam/>
 
     </div>
   )

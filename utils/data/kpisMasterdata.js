@@ -1,139 +1,99 @@
-// coding master data table dep, month, kpi, weight and target 
-export const kpisMasterData = [
-    {
-        month:'Jan',
-        kpiName:'LTI',
-        dep:'CI',
-        section:'FPP',
-        grade:'8-9',
-        target:0,
-        weight:20,
-    },
-    {
-        month:'Jan',
-        kpiName:'External Audit',
-        dep:'CI',
-        section:'FPP',
-        grade:'8-9',
-        target:95,
-        weight:40,
-    },
-    {
-        month:'Jan',
-        kpiName:'Muv',
-        dep:'CI',
-        section:'FPP',
-        grade:'8-9',
-        target:95,
-        weight:15,
-    },
-    {
-        month:'Jan',
-        kpiName:'CPMU',
-        dep:'CI',
-        section:'FPP',
-        grade:'8-9',
-        target:95,
-        weight:10,
-    },
-    {
-        month:'Jan',
-        kpiName:'OEE',
-        dep:'CI',
-        section:'FPP',
-        grade:'8-9',
-        target:95,
-        weight:15,
-    },
-    {
-        month:'Jan',
-        kpiName:'LTI',
-        dep:'CI',
-        section:'SPP',
-        grade:'8-9',
-        target:0,
-        weight:30,
-    },
-    {
-        month:'Jan',
-        kpiName:'External Audit',
-        dep:'CI',
-        section:'SPP',
-        grade:'8-9',
-        target:95,
-        weight:20,
-    },
-    {
-        month:'Jan',
-        kpiName:'Muv',
-        dep:'CI',
-        section:'SPP',
-        grade:'8-9',
-        target:95,
-        weight:20,
-    },
-    {
-        month:'Jan',
-        kpiName:'CPMU',
-        dep:'CI',
-        section:'SPP',
-        grade:'8-9',
-        target:95,
-        weight:15,
-    },
-    {
-        month:'Jan',
-        kpiName:'OEE',
-        dep:'CI',
-        section:'SPP',
-        grade:'8-9',
-        target:95,
-        weight:15,
-    },
-    {
-        month:'Jan',
-        kpiName:'LTI',
-        dep:'CI',
-        section:'CI',
-        grade:'10-12',
-        target:0,
-        weight:30,
-    },
-    {
-        month:'Jan',
-        kpiName:'External Audit',
-        dep:'CI',
-        section:'CI',
-        grade:'10-12',
-        target:95,
-        weight:20,
-    },
-    {
-        month:'Jan',
-        kpiName:'Muv',
-        dep:'CI',
-        section:'CI',
-        grade:'10-12',
-        target:95,
-        weight:20,
-    },
-    {
-        month:'Jan',
-        kpiName:'CPMU',
-        dep:'CI',
-        section:'CI',
-        grade:'10-12',
-        target:95,
-        weight:15,
-    },
-    {
-        month:'Jan',
-        kpiName:'OEE',
-        dep:'CI',
-        section:'CI',
-        grade:'10-12',
-        target:95,
-        weight:15,
-    },
+// first master data coding
+export  const  kpisInputSource = ['Plant-1','Plant-2','Plant-3','SPP Plant','FPP Plant', 'OverAll']
 
+export const KpisMasterData = [
+    {
+        kpiName:'Manufacturing Expense',
+        aspect:'Cost',
+        type:'General',
+        plants:['Plant-1','Plant-2','Plant-3','SPP Plant','FPP Plant']
+    },
+    {
+        kpiName:'MUV',
+        aspect:'Cost',
+        type:'General',
+        plants:['Plant-1','Plant-2','Plant-3','SPP Plant','FPP Plant']
+    },
+    {
+        kpiName:'Power Consumption',
+        aspect:'Cost',
+        type:'General',
+        plants:['Plant-1','Plant-2','Plant-3','SPP Plant','FPP Plant']
+    },
+    {
+        kpiName:'OEE',
+        aspect:'Production',
+        type:'General',
+        plants:['Plant-1','Plant-2','Plant-3','SPP Plant','FPP Plant']
+    },
+    {
+        kpiName:'CPMU',
+        aspect:'Quality',
+        type:'General',
+        plants:['Plant-1','Plant-2','Plant-3','SPP Plant','FPP Plant']
+    },
+    {
+        kpiName:'External Audit',
+        aspect:'Quality',
+        type:'General',
+        plants:['Plant-1','Plant-2','Plant-3','SPP Plant','FPP Plant']
+    },
+    {
+        kpiName:'NCR Closers',
+        aspect:'Quality',
+        type:'General',
+        plants:['Plant-1','Plant-2','Plant-3','SPP Plant','FPP Plant']
+    },
+    {
+        kpiName:'Plan Adherence',
+        aspect:'Results',
+        type:'General',
+        plants:['Plant-1','Plant-2','Plant-3','SPP Plant','FPP Plant']
+    },
+    {
+        kpiName:'MTTR',
+        aspect:'Results',
+        type:'Productivity',
+        plants:['Plant-1','Plant-2','Plant-3','SPP Plant','FPP Plant']
+    },
+    {
+        kpiName:'Positive Area Swaps',
+        aspect:'Results',
+        type:'Productivity',
+        plants:['Plant-1','Plant-2','Plant-3','SPP Plant','FPP Plant']
+    },
+    {
+        kpiName:'Productivity(Kg/hr)',
+        aspect:'Results',
+        type:'Productivity',
+        plants:['Plant-1','Plant-2','Plant-3','SPP Plant','FPP Plant']
+    },
+    {
+        kpiName:'G-A Whole Chicken%',
+        aspect:'Production',
+        type:'General',
+        plants:['Plant-1','Plant-2','Plant-3','SPP Plant']
+    },
+    {
+        kpiName:'Avg House Loading Time',
+        aspect:'Results',
+        type:'Productivity',
+        plants:['Plant-1','Plant-2','Plant-3','SPP Plant']
+    },
+    {
+        kpiName:'Productivity(Carcass/hr)',
+        aspect:'Results',
+        type:'Productivity',
+        plants:['Plant-1','Plant-2','Plant-3','SPP Plant']
+    },
+    {
+        kpiName:'Productivity(Whole/hr)',
+        aspect:'Results',
+        type:'Productivity',
+        plants:['Plant-1','Plant-2','Plant-3','SPP Plant']
+    },
 ]
+
+
+
+

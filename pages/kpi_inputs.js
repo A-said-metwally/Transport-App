@@ -1,16 +1,20 @@
 import React, { useState } from 'react'
 import KpiItem from '../components/KpiItem'
-import { kpis } from '../utils/data/kpis'
+import { KpisMasterData } from '../utils/data/kpisMasterData'
+import Loading from '../components/Loading'
+
+import {collection, getDocs, addDoc, Firebase} from 'firebase/firestore'
+import { db } from '../firebase/init-firebase'
+
 
 function KpiInputs() {
 // fetch kpis master data from sql db
 
   const [InputData, setInputData] = useState([]) 
-  
-  const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec', ]
-  
-  const [Month, setMonth] = useState('')
-  
+  const [loading, setLoading] = useState(false)
+
+  const months = ['--', 'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec', ]
+    
   const addData = (e) =>{ 
     // check if data alrady exist or not
     let chk = InputData.filter((i)=>{ return i.searchKey === e.searchKey})
@@ -22,24 +26,30 @@ function KpiInputs() {
         setInputData([...InputData, e])
     }
 }
-console.table(InputData)
-console.log('month is ',Month)
 
 const submitData = ()=>{
     let confirmText = 'Are You Sure to Submit Data'
         if(confirm(confirmText) === true){
-            localStorage.removeItem('inputs')
-            localStorage.setItem('inputs',JSON.stringify(InputData) )
-            location.reload() 
-            // success form   
-        }
+        setLoading(true)
+        // push new item
+        const resultsRef = collection(db, "results")
+        InputData.forEach((doc)=>{
+          addDoc(resultsRef, doc)
+          .then(()=>{
+              setInputData([])
+              location.reload() 
+          })
+          .then(()=>setLoading(false))
+        })
+    }
 }
 
 
   return (
-    <div className=''>
-        <div className='flex flex-col items-center justify-center container'>
-            
+    <div>
+        {loading && <Loading/>}
+
+        <div className='flex flex-col items-center justify-center container'>            
             {/* controls  */}
             <div className='h-30 flex flex-col justify-between items-center shadow-md
              lg:flex-row lg:justify-between lg:items-center mb-4 w-full border-1 border-gray-300 p-2 rounded-xl'>
@@ -47,12 +57,12 @@ const submitData = ()=>{
                  lg:flex-row lg:justify-center lg:items-between lg:space-x-5 ' >
                     <label htmlFor="" className=' text-gray-500 font-semibold'>Select Period</label>
                     <select 
+                        id = 'month'
                         type="text" 
                         name='month' 
                         placeholder='Kpis Period' 
-                        value={Month}
-                        onChange={(e)=>setMonth(e.target.value)}
-                        className='p-2 mt-0 rounded-md w-24 bg-inherit text-center border
+                        // onChange={(e)=>setMonth(e.target.value)}
+                        className='p-2 mt-0 rounded-md w-24 bg-inherit text-center border-1
                         border-gray-400 shadow-md' 
                     >
                        {months.map(m => (
@@ -71,10 +81,9 @@ const submitData = ()=>{
 
             {/* inputs fields */}
             <div className='p-2 w-full flex flex-col items-start border-1 border-gray-300 shadow-md important pt-4 rounded-xl'>
-                {kpis.map(k => (
+                {KpisMasterData.map(k => (
                     <KpiItem 
                         key = {k.kpiName}
-                        month = {Month}
                         kpiName = {k.kpiName} 
                         plants = {k.plants} 
                         addData = {addData} />

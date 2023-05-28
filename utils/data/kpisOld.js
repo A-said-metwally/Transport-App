@@ -1,15 +1,8 @@
 // inputs table tesults
+
 export  const kpis = [
-    {  
-        kpiName:'LTI',
-        plants:['Plant-1','Plant-2','Plant-3','SPP Plant','FPP Plant']
-    },
     {
         kpiName:'External Audit',
-        plants:['Plant-1','Plant-2','Plant-3','SPP Plant','FPP Plant']
-    },
-    {
-        kpiName:'Kaizen Idea',
         plants:['Plant-1','Plant-2','Plant-3','SPP Plant','FPP Plant']
     },
     {

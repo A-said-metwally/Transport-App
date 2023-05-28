@@ -28,8 +28,8 @@ function EvaluationBox({data}) {
 
   return (
     <div >
-        <p className='h-16 w-16 rounded-full bg-gray-200 border border-gray-700 shadow-md
-         m-0 p-0 flex justify-center items-center font-bold text-sky-500 text-2xl'>
+        <p className = {`h-16 w-16 rounded-full bg-gray-200 border border-gray-700 shadow-md
+         m-0 p-0 flex justify-center items-center font-bold text-2xl ${Eval > 95 ? 'text-green-500' : Eval > 85 ? 'text-orange-400' : 'text-red-600'}`}>
             {Eval.toFixed(0)}%
         </p>
     </div>

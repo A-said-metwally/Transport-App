@@ -3,9 +3,9 @@ import {db} from '../firebase/init-firebase'
 import XLSX from 'xlsx'
 
 
-const usersRef = collection(db, 'users')
-const itemsRef = collection(db, 'items')
-const customersRef = collection(db, 'customers')
+const matrixRef = collection(db, 'matrix')
+const targetsRef = collection(db, 'targets')
+const resultsRef = collection(db, 'results')
 const suppliersRef = collection(db, 'suppliers')
 const billsRef = collection(db , 'bills')
 
@@ -107,15 +107,11 @@ export const fetchBills = async (f)=>{
 }
 
 // export excel
-export const handleExportExcel = (data, title, fromDate, toDate)=>{
+export const handleExportExcel = (data, title)=>{
     var wb = XLSX.utils.book_new(),
     ws = XLSX.utils.json_to_sheet(data);
   
     XLSX.utils.book_append_sheet(wb, ws, 'worksheet' )
-    if(fromDate && toDate){
-        XLSX.writeFile(wb, `${title} from ${fromDate} to ${toDate}.xlsx` )
-    }else{
-        XLSX.writeFile(wb, `${title} to ${fromDate}.xlsx` )
-    }
+        XLSX.writeFile(wb, `${title}.xlsx` )
   }
   
