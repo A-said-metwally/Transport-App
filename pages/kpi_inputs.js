@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import KpiItem from '../components/KpiItem'
-import { KpisMasterData } from '../utils/data/kpisMasterData'
+import { kpisMasterData } from '../utils/data/kpisMasterData'
 import Loading from '../components/Loading'
 
 import {collection, getDocs, addDoc, Firebase} from 'firebase/firestore'
@@ -81,7 +81,7 @@ const submitData = ()=>{
 
             {/* inputs fields */}
             <div className='p-2 w-full flex flex-col items-start border-1 border-gray-300 shadow-md important pt-4 rounded-xl'>
-                {KpisMasterData.map(k => (
+                {kpisMasterData.map(k => (
                     <KpiItem 
                         key = {k.kpiName}
                         kpiName = {k.kpiName} 

@@ -1,6 +1,6 @@
 // first master data coding
 
-export const KpisMasterData = [
+export const kpisMasterData = [
     {
         kpiName:'Manufacturing Expense',
         aspect:'Cost',

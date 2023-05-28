@@ -1,7 +1,7 @@
 import React from 'react'
 import { useState } from 'react'
 import { dept } from '../utils/data/departements'
-import { KpisMasterData } from '../utils/data/kpisMasterData'
+import {kpisMasterData } from '../utils/data/kpisMasterData'
 import { kpisInputSource } from '../utils/data/kpiSource'
 
 function MatrixCodingCtrls({addKpi}) {
@@ -47,7 +47,7 @@ function MatrixCodingCtrls({addKpi}) {
         <select 
             type="text" name='kpi' id='kpi'
             className=' outline-none border-2 border-orange-400 rounded-md p-2 text-gray-600 bg-transparent w-[250px]' >
-            {KpisMasterData.map(k => (
+            {kpisMasterData.map(k => (
                 <option key = {k} value={k.aspect + `|`+ k.type + `|`+ k.kpiName} className='bg-inherit  text-gray-600 font-bold'>{k.aspect + ` - `+k.kpiName}</option>
             ))}
         </select>
