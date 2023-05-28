@@ -1,8 +1,8 @@
 import React from 'react'
 import { useState } from 'react'
 import { dept } from '../utils/data/departements'
-import {kpisMasterData } from '../utils/data/kpisMasterData'
-import { kpisInputSource } from '../utils/data/kpiSource'
+import { kpisInputSource } from '../utils/data/kpissource'
+import { kpisMasterData } from '../utils/data/kpisdasterdata'
 
 function MatrixCodingCtrls({addKpi}) {
 

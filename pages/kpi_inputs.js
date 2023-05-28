@@ -1,10 +1,10 @@
 import React, { useState } from 'react'
 import KpiItem from '../components/KpiItem'
-import { kpisMasterData } from '../utils/data/kpisMasterData'
 import Loading from '../components/Loading'
 
 import {collection, getDocs, addDoc, Firebase} from 'firebase/firestore'
 import { db } from '../firebase/init-firebase'
+import { kpisMasterData } from '../utils/data/kpisdasterdata'
 
 
 function KpiInputs() {
