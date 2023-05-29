@@ -1,5 +1,4 @@
 import React, { useEffect } from 'react'
-import Header from '../../components/Header'
 import { useState } from 'react'
 import { useRouter } from 'next/router';
 import PageAddress from '../../components/PageAddress';
@@ -10,7 +9,6 @@ import SubDetails from '../../components/SubDetails';
 
 import {collection, getDocs, addDoc, Firebase} from 'firebase/firestore'
 import { db } from '../../firebase/init-firebase'
-import { map } from 'bluebird';
 
 
 
@@ -18,7 +16,9 @@ function Results() {
   const router = useRouter()
   const {params = []} = router.query
 
-  let periodMonth = document.getElementById('month')?.value || '--';
+  const [periodMonth, setPeriodMonth] = useState()
+
+  const getMonth = (e)=>{setPeriodMonth(e.target.value)}
 
   const [Matrix, setMatrix] = useState([])
   const [Targets, setTargets] = useState([])
@@ -164,24 +164,23 @@ const fetchData = async ()=>{
   getResults()
 }
 
-useEffect(()=>{ 
-  fetchData()
-  // periodMonth = document.getElementById('month')?.value
-},[])
+useEffect(()=>{ fetchData() },[])
+
+let m = periodMonth
 
 useEffect(()=> {
   if(Matrix.length > 0 && Targets.length > 0 && InputsData.length > 0){
     kpisFiltering()
     calc()
   }
-})
+},[params, m])
 
 
   return (
     <div className='flex flex-col items-center justify-center container'>
       <div className='w-full'>
         <div className='flex items-center'>
-          <SelectMonth opt = {true}/>
+          <SelectMonth opt = {true} getMonth={getMonth}/>
           <PageAddress params={params}/>
           <EvaluationBox data = {Evaluation}/>
         </div>

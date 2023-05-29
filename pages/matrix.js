@@ -44,8 +44,8 @@ useEffect(()=>{
         {loading && <Loading/>}
         <div className='container'>
             <h1 className='text-gray-500 shadow-md font-serif bg-gradient-to-r from-green-300 to-yellow-300 p-2 rounded-md'>KPIs Matrix Details </h1>
-            <MatrixCtrls/>
-            <MatrixDetails data = {Matrix} sort = {sort}/>
+            <MatrixCtrls data={Matrix} />
+            <MatrixDetails data={Matrix} sort={sort}/>
         </div>
     </div>
   )

@@ -1,22 +1,21 @@
 import React, {useEffect, useState} from 'react'
-import Header from '../components/Header'
 import Slider from '../components/Slider'
-import NavBar from '../components/NavBar'
-import OverLay from '../components/OverLay'
 import {ShoppingBagIcon, ClipboardListIcon} from '@heroicons/react/outline'
 import CiTeam from '../components/CiTeam'
 import Title from '../components/Title'
 import Spiner from '../components/Spiner'
+import Image from 'next/image'
 
 export default function Main() {   
 
   return (
   <div className='relative'>
       {/* <Slider/> */}
-      <div className = ' relative flex justify-end  mt-10 bg-gradient-to-r from-indigo-500 to-green-400 p-5 h-[250px] text-5xl text-[#e8e1cf] '>
+      <div className = ' relative flex justify-end shadow-md mt-10 bg-gradient-to-r from-indigo-500 to-green-400 p-5 h-[250px] text-5xl text-[#e8e1cf] '>
         <p className = 'w-[700px] leading-relaxed font-semibold font-serif'>What is a Key Performance Indicator (KPI)?</p>
-        <img src = '/kpi.jpg' alt='kpi' className=' absolute left-32 bottom-[-103px] w-[250px] h-[250px]
-         rounded-full border-4 border-amber-200 shadow-md'/>
+        <div className='absolute left-32 bottom-[-103px] h-[250px] w-[250px] rounded-full shadow-md'>
+          <Image layout="fill"  src = '/kpi.jpg' alt='kpi' className='rounded-full' />
+        </div>
       </div>
       
       <Spiner/>
@@ -40,7 +39,7 @@ export default function Main() {
               </div>
             </div>
             <div className="col-md-4">
-              <img src="/kpis.jpg" className="img-fluid rounded-start h-[300px] w-[300px] mix-blend-multiply" alt="..."/>
+              <Image height={300} width={300} src="/kpis.jpg" className="img-fluid rounded-start h-[300px] w-[300px] mix-blend-multiply" alt="kpi-img"/>
             </div>
           </div>
         </div>
@@ -117,10 +116,11 @@ export default function Main() {
         {/* <hr className = 'text-blue-600 max-w-full h-2 mt-12 mb-12'/> */}
       </div>
 
-      <div className = ' relative flex justify-end  mt-[80px] bg-gradient-to-r from-indigo-500 to-green-400 p-5 h-[250px] text-5xl text-[#e8e1cf] '>
+      <div className = ' relative flex justify-end shadow-md  mt-[80px] bg-gradient-to-r from-indigo-500 to-green-400 p-5 h-[250px] text-5xl text-[#e8e1cf] '>
         <p className = 'w-[700px] leading-relaxed font-semibold font-serif'>Al Watania KPIs 2023</p>
-        <img src = '/kpi.jpg' alt='kpi' className=' absolute left-32 bottom-[-103px] w-[250px] h-[250px]
-         rounded-full border-4 border-amber-200 shadow-md'/>
+        <div className='absolute left-32 bottom-[-103px] h-[250px] w-[250px] rounded-full shadow-md'>
+          <Image layout="fill"  src = '/kpi.jpg' alt='kpi' className='rounded-full' />
+        </div>
       </div>
 
       <Slider/>

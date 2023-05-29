@@ -75,6 +75,7 @@ function Header() {
           src = '/logo.png' 
           height={100} 
           width={100}
+          alt='logo-img'
       />
     </header>
 

@@ -1,8 +1,9 @@
 import React from 'react'
 import { dept } from '../utils/data/departements'
 import {RefreshIcon, DocumentDownloadIcon} from '@heroicons/react/outline'
+import {handleExportExcel} from '../firebase/actions'
 
-function MatrixCtrls() {
+function MatrixCtrls({data}) {
   let allSections = dept.map((d)=>{return(d.sections)})
   let departments = dept.map((d)=>{return(d.depName)})
   let sections = []
@@ -62,7 +63,7 @@ function MatrixCtrls() {
  
                 <div className='flex space-x-3 '>
                     <button
-                        // onClick={()=>handleExportExcel(Results, 'Kpis Results')}
+                        onClick={()=>handleExportExcel(data, 'Kpis Matrix Details')}
                         className=' pl-4 pr-4 pt-2 pb-2 transition duration-105 m-0
                         cursor-pointer hover:scale-105 text-blue-600 font-bold '
                         >

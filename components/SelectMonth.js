@@ -1,6 +1,6 @@
 import React from 'react'
 
-function SelectMonth({opt}) {
+function SelectMonth({opt, getMonth}) {
     const months = ['--', 'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec', ]
     const currentDate = new Date()
     const currentMonthNum = currentDate.getMonth()
@@ -10,14 +10,13 @@ function SelectMonth({opt}) {
     <div className='flex justify-center items-center ' >
         <select 
             type="text" name='month' id='month'
-            // onChange={(e)=>setMonth(e.target.value)}
+            onChange={(e)=>getMonth(e)}
             className='h-16 w-16 rounded-full bg-gray-200 font-bold text-center border border-gray-700 shadow-md' >
             {months.map(m => (
                 <option  
                  key = {m} 
                  value={m} 
                 selected = {m === currentMonthValue}
-                //  {m === currentMonthValue && 'selected'}
                  className='bg-inherit  text-gray-600 font-bold'>{m}</option>
             ))}
         </select>
