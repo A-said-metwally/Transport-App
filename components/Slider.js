@@ -17,7 +17,7 @@ function Slider() {
                     {arr.map((i, index)=>{
                         return (
                             <div key={index} className={`carousel-item ${i === 1 ? 'active': null}  h-full w-full`}>
-                                <Image layout='fill' src={`/k${i}.jpg`} className="d-block h-full w-full object-fill" alt={`${i}`}/>
+                                <Image layout='fill' src={`./k${i}.jpg`} className="d-block h-full w-full object-fill" alt={`${i}`}/>
                                 <div className="carousel-caption d-none d-md-block">
                                     {/* <h5>First slide label</h5>
                                     <p>Some representative placeholder content for the first slide.</p> */}
