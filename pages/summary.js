@@ -259,8 +259,8 @@ let groupEvalResults = []
                         <td className=' pt-3 pb-3'>{d.dep}</td>
                         <td className=' pt-3 pb-3'>{d.sec}</td>
                         <td className=' pt-3 pb-3'>{d.grade}</td>
-                        <td className=' pt-3 pb-3 flex space-x-2 justify-between w-[0px]'>
-                            {d.value.toFixed(1)}% 
+                        <td className=' pt-3 pb-3 flex justify-start'>
+                            <p className='w-20'>{d.value.toFixed(1)}%</p>
                             {
                                 d.value >= 95
                                 ? <ArrowUpIcon className = 'h-6 text-green-600 text-xl'/>
