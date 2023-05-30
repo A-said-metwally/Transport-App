@@ -43,7 +43,7 @@ function Header() {
                   <HeaderItem title = 'Evaluation' Icon = {ChartBarIcon} path='#' subNav={true}/>
                 </li>
                 <li className="nav-item">
-                  <HeaderItem title = 'Summary' Icon = {DocumentReportIcon} path='#'/>
+                  <HeaderItem title = 'Summary' Icon = {DocumentReportIcon} path='/summary'/>
                 </li>
                 <li className="nav-item">
                   <HeaderItem title = 'Matrix' Icon = {CollectionIcon} path='/matrix'/>

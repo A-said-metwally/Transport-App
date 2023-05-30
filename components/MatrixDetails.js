@@ -1,5 +1,5 @@
 import React from 'react'
-import {ArrowDownIcon} from '@heroicons/react/outline'
+import {SortDescendingIcon} from '@heroicons/react/outline'
 
 function MatrixDetails({data, sort}) {
 
@@ -11,7 +11,7 @@ function MatrixDetails({data, sort}) {
                 <th scope="col">
                         <div className='flex items-center space-x-3'>
                             <span>Department</span>
-                            <ArrowDownIcon 
+                            <SortDescendingIcon 
                             className='h-4 w-4 text-blue-600 text-lg hover:scale-105 cursor-pointer'
                             onClick={()=>sort('dep')}
                         />
@@ -20,7 +20,7 @@ function MatrixDetails({data, sort}) {
                     <th scope="col">
                         <div className='flex items-center space-x-3'>
                             <span>Section</span>
-                            <ArrowDownIcon 
+                            <SortDescendingIcon 
                             className='h-4 w-4 text-blue-600 text-lg hover:scale-105 cursor-pointer'
                             onClick={()=>sort('sec')}
                         />
@@ -29,7 +29,7 @@ function MatrixDetails({data, sort}) {
                     <th scope="col">
                         <div className='flex items-center space-x-3'>
                             <span>Grade</span>
-                            <ArrowDownIcon 
+                            <SortDescendingIcon 
                             className='h-4 w-4 text-blue-600 text-lg hover:scale-105 cursor-pointer'
                             onClick={()=>sort('grade')}
                         />
@@ -38,7 +38,7 @@ function MatrixDetails({data, sort}) {
                     <th scope="col">
                         <div className='flex items-center space-x-3'>
                             <span>Aspect</span>
-                            <ArrowDownIcon 
+                            <SortDescendingIcon 
                             className='h-4 w-4 text-blue-600 text-lg hover:scale-105 cursor-pointer'
                             onClick={()=>sort('aspect')}
                         />
@@ -47,7 +47,7 @@ function MatrixDetails({data, sort}) {
                     <th scope="col">
                         <div className='flex items-center space-x-3'>
                             <span>KPI Name</span>
-                            <ArrowDownIcon 
+                            <SortDescendingIcon 
                             className='h-4 w-4 text-blue-600 text-lg hover:scale-105 cursor-pointer'
                             onClick={()=>sort('kpi')}
                         />
@@ -66,7 +66,7 @@ function MatrixDetails({data, sort}) {
                     <th scope="col">
                         <div className='flex items-center space-x-3'>
                             <span>Type</span>
-                            <ArrowDownIcon 
+                            <SortDescendingIcon 
                             className='h-4 w-4 text-blue-600 text-lg hover:scale-105 cursor-pointer'
                             onClick={()=>sort('type')}
                         />

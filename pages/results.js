@@ -4,7 +4,7 @@ import { db } from '../firebase/init-firebase'
 import { useEffect } from 'react'
 import { useState } from 'react'
 import Loading from '../components/Loading'
-import {RefreshIcon, SortAscendingIcon, DocumentDownloadIcon, ArrowDownIcon} from '@heroicons/react/outline'
+import {RefreshIcon, SortAscendingIcon, DocumentDownloadIcon, SortDescendingIcon} from '@heroicons/react/outline'
 import { handleExportExcel } from '../firebase/actions'
 
 function Results() {
@@ -55,7 +55,7 @@ function Results() {
       },[])
 
   return (
-    <div>
+    <div className='overflow-x-scroll'>
     {loading && <Loading/>}  
     <div className=' mt-11 container '>
         <h1 className='text-gray-500 font-serif bg-gradient-to-r from-green-300 to-yellow-300 p-2 rounded-md'>Monthly Results Page</h1>
@@ -105,7 +105,7 @@ function Results() {
                     <th scope="col">
                         <div className='flex items-center space-x-3'>
                            <span>Month</span>
-                           <ArrowDownIcon 
+                           <SortDescendingIcon 
                             className='h-5 w-5 text-blue-600 text-lg hover:scale-105 cursor-pointer'
                             onClick={()=>sort('month')}
                             />
@@ -114,7 +114,7 @@ function Results() {
                     <th scope="col">
                         <div className='flex items-center space-x-3'>
                            <span>KPI Name</span>
-                           <ArrowDownIcon 
+                           <SortDescendingIcon 
                             className='h-5 w-5 text-blue-600 text-lg hover:scale-105 cursor-pointer'
                             onClick={()=>sort('kpiName')}
                             />
@@ -123,7 +123,7 @@ function Results() {
                     <th scope="col">
                         <div className='flex items-center space-x-3'>
                            <span>Plant</span>
-                           <ArrowDownIcon 
+                           <SortDescendingIcon 
                             className='h-5 w-5 text-blue-600 text-lg hover:scale-105 cursor-pointer'
                             onClick={()=>sort('plant')}
                             />

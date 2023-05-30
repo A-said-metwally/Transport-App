@@ -24,7 +24,6 @@ function Results() {
   const [Targets, setTargets] = useState([])
 
   const [InputsData, setInputsData]  = useState([])
-  // const [PersonalKpis, setPersonalKpis] = useState([])
 
   const [Evaluation, setEvaluation] = useState([])
 
@@ -92,7 +91,6 @@ const kpisFiltering = ()=>{
   PersonalKpis = kpis
 }
 // calculate over all results
-
 const groupedData = {};
 
 let data = InputsData.filter((d)=>{return d.month === periodMonth})

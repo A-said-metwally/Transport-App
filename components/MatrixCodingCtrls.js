@@ -32,7 +32,7 @@ function MatrixCodingCtrls({addKpi}) {
             type="text" name='section' id='sec'
             className=' outline-none border-2 border-orange-400 rounded-md p-2 text-gray-600 bg-transparent w-[250px]' >
             {Sections.map(s => (
-                <option key = {s} value={s.secName +`/`+ s.grade} className='bg-inherit  text-gray-600 font-bold'>{s.secName + ` ( `+s.grade+` )`}</option>
+                <option key = {s} value={s.secName +`|`+ s.grade} className='bg-inherit  text-gray-600 font-bold'>{s.secName + ` ( `+s.grade+` )`}</option>
             ))}
         </select>
 

@@ -52,6 +52,7 @@ function MatrixCoding() {
       alert('Kpis Total Weight Must Be 100%')
       return
     }
+    console.log(NewMatrix)
         setLoading(true)
         // push new item
         const matrixRef = collection(db, "matrix")
@@ -67,7 +68,7 @@ function MatrixCoding() {
 
 
   return (
-    <div >  
+    <div className=' overflow-x-scroll'>  
       
       {loading && <Loading/>}
       

@@ -77,7 +77,7 @@ const submitTargets = ()=>{
 
 
   return (
-    <div>
+    <div className='overflow-x-scroll'>
         {loading && <Loading/>}
         <div className='container'>
             <h1 className='text-gray-500 shadow-md font-serif bg-gradient-to-r from-green-300 to-yellow-300 p-2 rounded-md'>Add Targets </h1>
