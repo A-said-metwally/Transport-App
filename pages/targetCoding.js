@@ -79,10 +79,10 @@ const submitTargets = ()=>{
   return (
     <div className='overflow-x-scroll'>
         {loading && <Loading/>}
-        <div className='container'>
+        <div className='container min-h-screen'>
             <h1 className='text-gray-500 shadow-md font-serif bg-gradient-to-r from-green-300 to-yellow-300 p-2 rounded-md'>Add Targets </h1>
             <div className='flex justify-center space-x-12'>
-                <TargetCtrls/>
+                {/* <TargetCtrls/> */}
                 <SelectMonth opt = {false} />
                 <button
                     className='pl-10 pr-10 pt-2 pb-2 rounded-md border-green-600 border-1 

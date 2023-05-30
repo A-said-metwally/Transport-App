@@ -52,17 +52,16 @@ function MatrixCoding() {
       alert('Kpis Total Weight Must Be 100%')
       return
     }
-    console.log(NewMatrix)
-        setLoading(true)
-        // push new item
-        const matrixRef = collection(db, "matrix")
-        NewMatrix.forEach((doc)=>{
-          addDoc(matrixRef, doc)
-          .then(()=>{
-              setNewMatrix([])
-          })
-          .then(()=>setLoading(false))
-        })
+    setLoading(true)
+    // push new item
+    const matrixRef = collection(db, "matrix")
+    NewMatrix.forEach((doc)=>{
+      addDoc(matrixRef, doc)
+      .then(()=>{
+          setNewMatrix([])
+      })
+      .then(()=>setLoading(false))
+    })
 }
 
 
@@ -72,7 +71,7 @@ function MatrixCoding() {
       
       {loading && <Loading/>}
       
-      <div className='container relative'>
+      <div className='container relative min-h-screen'>
           <h1 className='text-gray-500 shadow-md font-serif bg-gradient-to-r from-green-300 to-yellow-300 p-2 rounded-md'>Matrix Coding</h1>
           
           <MatrixCodingCtrls addKpi = {addKpi}/>
