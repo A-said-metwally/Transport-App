@@ -196,7 +196,7 @@ let groupEvalResults = []
 
  
   return (
-    <div className='overflow-x-scroll '>
+    <div className='overflow-scroll '>
 
 
       <div className='container mt-11 min-h-screen'>
