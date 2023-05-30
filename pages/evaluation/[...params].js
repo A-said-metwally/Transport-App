@@ -175,7 +175,7 @@ useEffect(()=> {
 
 
   return (
-    <div className='flex flex-col items-center justify-center container min-h-screen'>
+    <div className='flex flex-col justify-center container min-h-screen'>
       <div className='w-full'>
         <div className='flex items-center'>
           <SelectMonth opt = {true} getMonth={getMonth}/>
