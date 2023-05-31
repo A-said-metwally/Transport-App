@@ -5,16 +5,54 @@ import Loading from '../components/Loading'
 import {collection, getDocs, addDoc, Firebase} from 'firebase/firestore'
 import { db } from '../firebase/init-firebase'
 import { kpisMasterData } from '../utils/data/kpisdasterdata'
+import { useEffect } from 'react'
 
 
 function KpiInputs() {
 // fetch kpis master data from sql db
 
-  const [InputData, setInputData] = useState([]) 
+  const [Results, setResults] = useState([]) // fetch results from fire base
+  const [InputData, setInputData] = useState([]) //to store user inputs
   const [loading, setLoading] = useState(false)
+  
+const months = ['--', 'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec', ]
 
-  const months = ['--', 'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec', ]
-    
+const fetchData = async ()=>{
+    // setLoading(true)
+    const resultsRef = collection(db, 'results')
+    await getDocs(resultsRef)
+    .then(res => {
+        let resultsData = res.docs.map(doc =>(
+            {
+                id:doc.id,
+                data:doc.data()
+            }
+        ))
+        return resultsData
+    })
+    .then(resultsInfo =>{setResults(resultsInfo.map((info)=>(info.data)))})
+    // .then(()=>setLoading(false))
+    .catch(error => console.log("results fetch error", error.message))
+  }
+
+let existMonths = []
+let newMonthArr = []
+
+// generate months to select list
+function add(){ 
+    Results.map((r)=>{existMonths.push(r.month)
+    existMonths = [... new Set(existMonths)] 
+    months.forEach((m)=>{
+        let mIndex = existMonths.indexOf(m)
+        if(mIndex === -1){
+            newMonthArr.push(m)
+        }
+    })
+    return newMonthArr = [... new Set(newMonthArr)]
+})}
+add()
+
+
   const addData = (e) =>{ 
     // check if data alrady exist or not
     let chk = InputData.filter((i)=>{ return i.searchKey === e.searchKey})
@@ -27,22 +65,49 @@ function KpiInputs() {
     }
 }
 
+const [RunInputValidation, setRunInputValidation] =useState(false) 
+const validate = (e)=>{
+    if(RunInputValidation === false){
+         return true
+        }else{
+            let data = InputData.map((i)=>{return i.searchKey})
+            let index = data.indexOf(e)
+            if(index === -1){
+                return false
+            }else{
+                return true
+            }
+        }
+}
+
+let defaultValueCount = []
+const kpisItems = kpisMasterData.map((k)=>k.plants)
+    kpisItems.forEach((d)=>d.map((d)=>{defaultValueCount.push(d)}))
+
+
 const submitData = ()=>{
     let confirmText = 'Are You Sure to Submit Data'
         if(confirm(confirmText) === true){
-        setLoading(true)
-        // push new item
-        const resultsRef = collection(db, "results")
-        InputData.forEach((doc)=>{
-          addDoc(resultsRef, doc)
-          .then(()=>{
-              setInputData([])
-              location.reload() 
-          })
-          .then(()=>setLoading(false))
-        })
+           if(defaultValueCount.length !== InputData.length){
+               alert('Pls Complete All Data')               
+               setRunInputValidation(true)
+           }else{
+               setLoading(true)
+               // push new item
+               const resultsRef = collection(db, "results")
+               InputData.forEach((doc)=>{
+                 addDoc(resultsRef, doc)
+                 .then(()=>{
+                     setInputData([])
+                     location.reload() 
+                 })
+                 .then(()=>setLoading(false))
+               })
+           }
     }
 }
+
+useEffect(()=>{fetchData()},[])
 
 
   return (
@@ -65,7 +130,7 @@ const submitData = ()=>{
                         className='p-2 mt-0 rounded-md w-24 bg-inherit text-center border-1
                         border-gray-400 shadow-md' 
                     >
-                       {months.map(m => (
+                       {newMonthArr.map(m => (
                            <option key={m} value={m} className='bg-inherit text-gray-700'>{m}</option>
                        ))}
                     </select>
@@ -86,7 +151,9 @@ const submitData = ()=>{
                         key = {k.kpiName}
                         kpiName = {k.kpiName} 
                         plants = {k.plants} 
-                        addData = {addData} />
+                        addData = {addData} 
+                        validate = {validate}
+                        />
                 ))}
             </div>
         </div>

@@ -14,11 +14,14 @@ import {
   CodeIcon,
   DocumentReportIcon,
   ViewBoardsIcon,
-  ChartBarIcon
+  ChartBarIcon,
+  PencilIcon
 } from "@heroicons/react/outline"
 import Link from 'next/link';
 
 function Header() {
+
+  const [Lang, setLang] = useState(true)
 
   return (
     <header className='flex items-center justify-between flex-col sm:flex-row  h-auto container mb-4 '>
@@ -65,6 +68,10 @@ function Header() {
                     </li>
                   </ul>
                 </li>
+                <li className="nav-item" onClick={()=>setLang(!Lang)}>
+                  <HeaderItem title = {Lang ? 'Eng' : 'عربى'} Icon = {PencilIcon} path='#'/>
+                </li>
+
               </ul>
             </div>
           </div>

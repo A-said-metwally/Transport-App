@@ -47,7 +47,7 @@ export const kpisMasterData = [
         kpiName:'Plan Adherence',
         aspect:'Results',
         type:'General',
-        plants:['Plant-1','Plant-2','Plant-3','SPP Plant','FPP Plant']
+        plants:['SPP Plant','FPP Plant']
     },
     {
         kpiName:'MTTR',
@@ -62,7 +62,7 @@ export const kpisMasterData = [
         plants:['Plant-1','Plant-2','Plant-3','SPP Plant','FPP Plant']
     },
     {
-        kpiName:'Productivity(Kg/hr)',
+        kpiName:'Portion & Fpp Productivity (Kg/hr)',
         aspect:'Results',
         type:'Productivity',
         plants:['Plant-1','Plant-2','Plant-3','SPP Plant','FPP Plant']
@@ -77,7 +77,7 @@ export const kpisMasterData = [
         kpiName:'Avg House Loading Time',
         aspect:'Results',
         type:'Productivity',
-        plants:['Plant-1','Plant-2','Plant-3','SPP Plant']
+        plants:['SPP Plant']
     },
     {
         kpiName:'Productivity(Carcass/hr)',

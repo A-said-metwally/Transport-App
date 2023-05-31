@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
+import { useEffect } from 'react'
 
-function KpiItem({kpiName, plants, addData}) {
+function KpiItem({kpiName, plants, addData, validate}) {
 
   const dataValidation = (e)=>{
     let month = document.getElementById('month').value   
@@ -28,9 +29,13 @@ function KpiItem({kpiName, plants, addData}) {
               <label htmlFor={`${kpiName}-${p}`} className='font-bold'>{p}</label>
               <input 
                 id = {`${kpiName}-${p}`}
-                type = 'number' 
-                className='text-gray-700 w-16 rounded-sm bg-inherit text-center border-1
-                 border-gray-400 focus:outline-none focus:bg-sky-400 focus:text-black '
+                type = 'number'
+                // value = {} 
+                className={`text-gray-700 w-16 rounded-sm bg-inherit text-center border-1
+                  focus:outline-none focus:bg-sky-400 focus:text-black 
+                  ${validate(`${kpiName}-${p}`)? 'border-gray-400' : 'border-red-600'}
+                  `}
+                
                  onChange={(e)=>dataValidation(e)}
                  onBlur={(e)=> e.target.value.length > 0 && getData(
                   {
