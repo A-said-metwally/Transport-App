@@ -29,10 +29,7 @@ function Results() {
             ))
             return resultsData
         })
-        .then(resultsInfo =>{setResults(resultsInfo.map((info)=>(info.data))
-            // .sort((a, b)=> a.kpiName.localeCompare(b.kpiName))
-            // .sort((a, b)=> a.plant.localeCompare(b.plant))
-            )
+        .then(resultsInfo =>{setResults(resultsInfo.map((info)=>(info.data)) )
         })
         .then(()=>setLoading(false))
         .catch(error => console.log("results fetch error", error.message))
@@ -58,7 +55,7 @@ function Results() {
     <div className='overflow-x-scroll'>
     {loading && <Loading/>}  
     <div className=' mt-11 container min-h-screen'>
-        <h1 className='text-gray-500 font-serif bg-gradient-to-r from-green-300 to-yellow-300 p-2 rounded-md'>Monthly Results Page</h1>
+        <h1 className='text-gray-500 font-serif shadow-md bg-gradient-to-r from-green-300 to-yellow-300 p-2 rounded-md'>Monthly Results Page</h1>
             {/* controls  */}
             <div className='h-30 mt-6 flex flex-col justify-between items-center shadow-md
              lg:flex-row lg:justify-between lg:items-center mb-4 w-full border-1 border-gray-300 p-2 rounded-xl'>

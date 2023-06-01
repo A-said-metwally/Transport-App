@@ -99,9 +99,12 @@ const submitData = ()=>{
                  addDoc(resultsRef, doc)
                  .then(()=>{
                      setInputData([])
-                     location.reload() 
-                 })
-                 .then(()=>setLoading(false))
+                     fetchData()
+                    })
+                    .then(()=>{
+                        setLoading(false)
+                        location.reload() 
+                })
                })
            }
     }

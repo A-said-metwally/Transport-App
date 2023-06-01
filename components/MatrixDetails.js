@@ -10,6 +10,15 @@ function MatrixDetails({data, sort}) {
                 <tr>
                 <th scope="col">
                         <div className='flex items-center space-x-3'>
+                            <span>Month</span>
+                            <SortDescendingIcon 
+                            className='h-4 w-4 text-blue-600 text-lg hover:scale-105 cursor-pointer'
+                            onClick={()=>sort('month')}
+                        />
+                        </div> 
+                    </th>
+                    <th scope="col">
+                        <div className='flex items-center space-x-3'>
                             <span>Department</span>
                             <SortDescendingIcon 
                             className='h-4 w-4 text-blue-600 text-lg hover:scale-105 cursor-pointer'
@@ -79,6 +88,7 @@ function MatrixDetails({data, sort}) {
             <tbody className='text-gray-600'>
                 {data.map((d)=>(
                     <tr key = {d.index} className=' hover:bg-gray-200 font-semibold hover:text-blue-600 hover:font-bold cursor-pointer text-lg'>
+                        <th scope="row" className=' pt-3 pb-3'></th>
                         <th scope="row" className=' pt-3 pb-3'>{d.dep}</th>
                         <td className=' pt-3 pb-3'>{d.sec}</td>
                         <td className=' pt-3 pb-3'>{d.grade}</td>

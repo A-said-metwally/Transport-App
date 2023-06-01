@@ -10,6 +10,7 @@ import { handleExportExcel } from '../firebase/actions'
 function Summary() {
 
   const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec', ]
+  const [Quarter, setQuarter] = useState('All')
   const [FinalEvaluation, setFinalEvaluation] = useState([]) 
 
 
@@ -22,6 +23,7 @@ function Summary() {
     const [InputsData, setInputsData]  = useState([])
   
     const [Evaluation, setEvaluation] = useState([])
+    const [Q, setQ] = useState(false)
 
 // first get all matrix data
 const getMatrix = async ()=>{
@@ -176,48 +178,106 @@ let groupEvalResults = []
   }
   
   
+  // calc()
+
   const filterData = ()=>{
-    const month = document.getElementById('month').value
-    if(month === 'All'){
-      setFinalEvaluation(groupEvalResults)
+    if(Quarter === 'All'){
+      setQ(false)
+      const month = document.getElementById('month').value
+      if(month === 'All'){
+        setFinalEvaluation(groupEvalResults)    
+        console.log('from all month',groupEvalResults)
+
+      }else{
+        let x = groupEvalResults.filter((r)=>{return(r.month === month)})
+        setFinalEvaluation(x)
+        console.log('from specfc month',groupEvalResults)
+      }
     }else{
-      let x = groupEvalResults.filter((r)=>{return(r.month === month)})
-      setFinalEvaluation(x)
+      setQ(true)
+      console.log('from quarter',groupEvalResults)
+      const q = Quarter.split("")[1]
+      let months;
+      switch(q){
+        case '1': months = ['Jan','Feb','Mar'];
+          break;
+        case '2': months = ['Apr', 'May', 'Jun']
+          break;
+        case '3': months = ['Jul', 'Aug', 'Sep']
+          break;
+        case '4': months = ['Oct', 'Nov', 'Dec']
+          break;  
+      }
+      let x = groupEvalResults?.filter((r)=>{return( months.includes(r.month))})
+      // groupEvalResults
+      const quarterGroup = {};
+      x?.forEach(obj => {
+        const key = obj.dep +'|'+ obj.sec +'|'+ obj.grade ;
+        if (!quarterGroup[key]) {
+          quarterGroup[key] = [];
+            }
+            quarterGroup[key].push(obj);
+          })
+          
+      let quarterGroupResult = []
+      for (const key in quarterGroup) {
+        const group = quarterGroup[key];
+        const sum = group.reduce((acc, obj) => acc + obj.value, 0);
+        const avg = sum / group.length
+        let address = key.split('|')
+        
+        quarterGroupResult.push({
+          index:months.indexOf(address[0]),
+          dep:address[0],
+          sec:address[1],
+          grade:address[2],
+          value:avg
+        })
+      }
+      setFinalEvaluation(quarterGroupResult)
     }
   }
 
 
   useEffect(()=>{fetchData() },[])
   
-  useEffect(()=>{
-    calc()
-    setFinalEvaluation(groupEvalResults)
-  },[Matrix, Targets, InputsData])
-
+  useEffect(()=>{calc()},[Matrix, Targets, InputsData,])
  
   return (
     <div className=''>
       <div className='container min-h-screen'>
-
-      <h1 className='text-gray-500 font-serif bg-gradient-to-r from-green-300 to-yellow-300 p-2 rounded-md'>Monthly Results Page</h1>
+      <h1 className='text-gray-500 font-serif shadow-md bg-gradient-to-r from-green-300 to-yellow-300 p-2 rounded-md'>Monthly Results Page</h1>
             {/* controls  */}
             <div className='h-30 mt-6 flex flex-col justify-between items-center shadow-md
              lg:flex-row lg:justify-between lg:items-center mb-4 w-full border-1 border-gray-300 p-2 rounded-xl'>
-                <div className='flex flex-col justify-center items-center 
-                 lg:flex-row lg:justify-center lg:items-between lg:space-x-5 ' >
-                    <label htmlFor="" className=' text-gray-500 font-semibold'>Select Period</label>
-                    <select 
-                        id = 'month'
-                        type="text" 
-                        name='month' 
-                        placeholder='Kpis Period' 
-                        className='p-2 mt-0 rounded-md w-24 bg-inherit text-center border-1
-                        border-gray-400 shadow-md' 
-                    >
-                       {['All', ...months].map(m => (
-                           <option key={m} value={m} className='bg-inherit text-gray-700'>{m}</option>
-                       ))}
-                    </select>
+                <div className='flex items-center space-x-12 ' >
+                    <div className='flex space-x-4 items-center'>
+                      <label htmlFor="" className=' text-gray-500 font-semibold'>Select Period</label>
+                      <select 
+                          id = 'month'
+                          type="text" 
+                          name='month' 
+                          placeholder='Kpis Period' 
+                          className='p-2 mt-0 rounded-md w-24 bg-inherit text-center border-1
+                          border-gray-400 shadow-md' 
+                          >
+                        {['All', ...months].map(m => (
+                          <option key={m} value={m} className='bg-inherit text-gray-700'>{m}</option>
+                          ))}
+                      </select>
+                    </div>
+                    <div className='flex item-center space-x-10 rounded-md bg-inherit  pl-3 pr-3'>
+                      {['All','Q1','Q2','Q3','Q4'].map((v, index)=>{
+                        return(
+                          <div key = {index} className=' flex items-center space-x-2 text-xl text-gray-500 font-semibold'>
+                            <label htmlFor="v">{v}</label>
+                            <input type="radio" id={v} name={v} value={v} className='h-5 w-5'
+                              checked={v === Quarter}
+                              onChange={(e)=>{setQuarter(e.target.value)}} />
+                          </div>
+                        )
+                      })}
+                    </div>
                 </div>
                     
                 <div className='flex space-x-3 '>
@@ -242,7 +302,7 @@ let groupEvalResults = []
         <table className="table ">
             <thead className='text-gray-500'>
                 <tr>
-                <th scope="col">Month</th>
+                <th scope="col">{!Q && 'Month'}</th>
                 <th scope="col">Department</th>
                 <th scope="col">Section</th>
                 <th scope="col text-center">Grade</th>
@@ -253,7 +313,7 @@ let groupEvalResults = []
             <tbody className='text-gray-600'>
                 {FinalEvaluation.map((d,index)=>(
                     <tr key = {index} className=' hover:bg-gray-200 font-semibold hover:text-blue-600 hover:font-bold cursor-pointer text-lg'>
-                        <th scope="row" className=' pt-3 pb-3'>{d.month}</th>
+                        <th scope="row" className=' pt-3 pb-3'>{!Q && d.month}</th>
                         <td className=' pt-3 pb-3'>{d.dep}</td>
                         <td className=' pt-3 pb-3'>{d.sec}</td>
                         <td className=' pt-3 pb-3'>{d.grade}</td>

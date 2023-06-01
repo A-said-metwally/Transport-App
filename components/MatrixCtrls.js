@@ -4,6 +4,7 @@ import {RefreshIcon, DocumentDownloadIcon} from '@heroicons/react/outline'
 import {handleExportExcel} from '../firebase/actions'
 
 function MatrixCtrls({data}) {
+  const months = ['All', 'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec', ]
   let allSections = dept.map((d)=>{return(d.sections)})
   let departments = dept.map((d)=>{return(d.depName)})
   let sections = []
@@ -24,6 +25,18 @@ function MatrixCtrls({data}) {
         <div className='h-30 mt-6 flex flex-col justify-between items-center shadow-md
              lg:flex-row lg:justify-between lg:items-center mb-4 w-full border-1 border-gray-300 p-2 rounded-xl'>
                <div className='flex space-x-6'>
+               <div className='flex flex-col justify-center items-center 
+                 lg:flex-row lg:justify-center lg:items-between lg:space-x-5 ' >
+                    <label htmlFor="Month" className=' text-gray-500 font-semibold'>Month</label>
+                    <select 
+                        type="text" id = 'Month' name='Month' 
+                        className='p-2 mt-0 rounded-md w-[100px] bg-inherit text-center border-1 border-gray-400 shadow-md' >
+                       {months.map(d => (
+                           <option key={d} value={d} className='bg-inherit text-gray-700'>{d}</option>
+                       ))}
+                    </select>
+                </div>
+               
                 <div className='flex flex-col justify-center items-center 
                  lg:flex-row lg:justify-center lg:items-between lg:space-x-5 ' >
                     <label htmlFor="department" className=' text-gray-500 font-semibold'>Department</label>
@@ -60,8 +73,16 @@ function MatrixCtrls({data}) {
                     </select>
                 </div>
                </div>
- 
+
                 <div className='flex space-x-3 '>
+                    <button 
+                        // onClick={filterData}
+                        className=' pl-4 pr-4 pt-2 pb-2 transition duration-105 m-0
+                        cursor-pointer hover:rotate-180 duration-200 ease-in-out text-blue-600 font-bold '
+                        >
+                      <RefreshIcon className=' h-8 w-8  cursor-pointer hover:text-green-500'/>
+                    </button>
+
                     <button
                         onClick={()=>handleExportExcel(data, 'Kpis Matrix Details')}
                         className=' pl-4 pr-4 pt-2 pb-2 transition duration-105 m-0

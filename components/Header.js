@@ -18,6 +18,7 @@ import {
   PencilIcon
 } from "@heroicons/react/outline"
 import Link from 'next/link';
+import NavBar from './NavBar';
 
 function Header() {
 
@@ -32,7 +33,7 @@ function Header() {
               <span className="navbar-toggler-icon"></span>
             </button>
             <div className="collapse navbar-collapse" id="navbarNavDropdown">
-              <ul className="navbar-nav flex flex-grow justify-between max-w-2xl">
+              <ul className="navbar-nav flex flex-grow justify-between space-x-4 max-w-3xl">
                 <li className="nav-item">
                   <HeaderItem title = 'HOME' Icon = {HomeIcon} path='/' />
                 </li>
@@ -42,8 +43,8 @@ function Header() {
                 <li className="nav-item">
                   <HeaderItem title = 'Results' Icon = {BadgeCheckIcon } path='/results'/>
                 </li>
-                <li className="nav-item">
-                  <HeaderItem title = 'Evaluation' Icon = {ChartBarIcon} path='#' subNav={true}/>
+                <li className="nav-item group">
+                    <HeaderItem title = 'Evaluation' Icon = {ChartBarIcon} path='#' subNav={true}/>
                 </li>
                 <li className="nav-item">
                   <HeaderItem title = 'Summary' Icon = {DocumentReportIcon} path='/summary'/>
