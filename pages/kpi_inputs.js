@@ -14,6 +14,8 @@ function KpiInputs() {
   const [Results, setResults] = useState([]) // fetch results from fire base
   const [InputData, setInputData] = useState([]) //to store user inputs
   const [loading, setLoading] = useState(false)
+
+  const [Validation, setValidation] = useState(true)
   
 const months = ['--', 'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec', ]
 
@@ -63,6 +65,10 @@ add()
     }else{
         setInputData([...InputData, e])
     }
+}
+
+const changValidation = ()=>{
+    setValidation(!Validation)
 }
 
 const [RunInputValidation, setRunInputValidation] =useState(false) 
@@ -138,13 +144,25 @@ useEffect(()=>{fetchData()},[])
                        ))}
                     </select>
                 </div>
-                <button 
-                    onClick={submitData}
-                    className='bg-gray-300 pl-4 pr-4 pt-2 pb-2 transition duration-105 m-0
-                    cursor-pointer hover:bg-green-500 hover:text-white  rounded-md text-gray-600 font-bold '
-                >
-                Submit
-                </button>
+                <div className='flex items-center'>
+                    <div className='flex items-center space-x-2 mr-5'>
+                        <span className='text-lg font-semibold '>Validation</span>
+                        <div 
+                            className={`${Validation ? 'bg-green-400' : 'bg-red-400'} h-[20px] w-[40px] rounded-full
+                             border-1 border-gray-400 cursor-pointer shadow-md`}
+                            onClick={()=>changValidation()}
+                        >
+                            <div className={`${Validation ? 'ml-[20px]' : 'ml-0'} h-[19px] w-[19px] bg-blue-600 rounded-full transition-all duration-500 `}></div>   
+                        </div>
+                    </div>
+                    <button 
+                        onClick={submitData}
+                        className='bg-gray-300 pl-4 pr-4 pt-2 pb-2 transition duration-105 m-0
+                        cursor-pointer hover:bg-green-500 hover:text-white  rounded-md text-gray-600 font-bold '
+                    >
+                    Submit
+                    </button>
+                </div>
             </div>
 
             {/* inputs fields */}

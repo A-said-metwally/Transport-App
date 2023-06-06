@@ -5,6 +5,7 @@ import CiTeam from '../components/CiTeam'
 import Title from '../components/Title'
 import Spiner from '../components/Spiner'
 import Image from 'next/image'
+import KpisAspects from '../components/KpisAspects'
 
 export default function Main() {   
 
@@ -111,10 +112,19 @@ export default function Main() {
           </div>
         </div>
 
-        <Spiner/>
-
-        {/* <hr className = 'text-blue-600 max-w-full h-2 mt-12 mb-12'/> */}
       </div>
+      <Spiner/>
+
+      <div className = ' relative flex justify-end shadow-md  mt-[80px] bg-gradient-to-r from-indigo-500 to-green-400 p-5 h-[250px] text-5xl text-[#e8e1cf] '>
+        <p className = 'w-[700px] leading-relaxed font-semibold font-serif'>KPIs Aspects</p>
+        <div className='absolute left-32 bottom-[-103px] h-[250px] w-[250px] rounded-full shadow-md'>
+          <Image layout="fill"  src = '/kpi.jpg' alt='kpi' className='rounded-full' />
+        </div>
+      </div>
+      
+      <KpisAspects/>
+
+      <Spiner/>
 
       <div className = ' relative flex justify-end shadow-md  mt-[80px] bg-gradient-to-r from-indigo-500 to-green-400 p-5 h-[250px] text-5xl text-[#e8e1cf] '>
         <p className = 'w-[700px] leading-relaxed font-semibold font-serif'>Al Watania KPIs 2023</p>

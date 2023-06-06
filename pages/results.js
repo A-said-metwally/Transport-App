@@ -4,13 +4,14 @@ import { db } from '../firebase/init-firebase'
 import { useEffect } from 'react'
 import { useState } from 'react'
 import Loading from '../components/Loading'
-import {RefreshIcon, SortAscendingIcon, DocumentDownloadIcon, SortDescendingIcon} from '@heroicons/react/outline'
+import {RefreshIcon, ChevronDownIcon, ChevronUpIcon,  DocumentDownloadIcon, SortDescendingIcon} from '@heroicons/react/outline'
 import { handleExportExcel } from '../firebase/actions'
+import { stringify } from 'querystring'
 
 function Results() {
 
     const [Results, setResults]  = useState([])
-    const [DataFrame, setDataFrame]  = useState([])
+    const [OriginalData, setOriginalData] = useState([])
 
     const [loading, setLoading] = useState(false)
 
@@ -29,7 +30,9 @@ function Results() {
             ))
             return resultsData
         })
-        .then(resultsInfo =>{setResults(resultsInfo.map((info)=>(info.data)) )
+        .then(resultsInfo =>{
+            setResults(resultsInfo.map((info)=>(info.data)))
+            setOriginalData(resultsInfo.map((info)=>(info.data)))
         })
         .then(()=>setLoading(false))
         .catch(error => console.log("results fetch error", error.message))
@@ -37,19 +40,26 @@ function Results() {
 
       const filterData = ()=>{
         const month = document.getElementById('month').value
-        setDataFrame(Results)
-        setResults(DataFrame.filter((r)=>{return(r.month === month)}))
+
+        if(month === '--'){
+            setResults(OriginalData)
+        }else{
+            const x = OriginalData.filter((r)=>{return(r.month === month)})
+            setResults(x)
+        }
       }
-      
-      const sort = (e)=>{
-        const x = [...Results].sort((a, b)=>a[e].localeCompare(b[e])) // use [...] to keep the original array intact 
-        setResults(x)
+
+    const sort = (e, t)=>{
+        if(t === 'asc'){
+            const x = [...Results].sort((a, b)=>a[e] < b[e] ? -1 : 0 ) // use [...] to keep the original array intact 
+            setResults(x)
+        }else if(t === 'dec'){
+            const x = [...Results].sort((a, b)=>a[e] > b[e] ? -1 : 0 ) // use [...] to keep the original array intact 
+            setResults(x)
+        }
     }
-
-
-      useEffect(()=>{
-        getResults()
-      },[])
+    
+    useEffect(()=>{getResults()},[])
 
   return (
     <div className='overflow-x-scroll'>
@@ -102,28 +112,46 @@ function Results() {
                     <th scope="col">
                         <div className='flex items-center space-x-3'>
                            <span>Month</span>
-                           <SortDescendingIcon 
-                            className='h-5 w-5 text-blue-600 text-lg hover:scale-105 cursor-pointer'
-                            onClick={()=>sort('month')}
-                            />
+                           <div >
+                            <ChevronUpIcon 
+                                className='h-5 w-5 text-blue-600 text-lg hover:scale-105 cursor-pointer'
+                                onClick={()=>sort('month','asc')}
+                                />
+                            <ChevronDownIcon 
+                                className='h-5 w-5 text-blue-600 text-lg hover:scale-105 cursor-pointer'
+                                onClick={()=>sort('month', 'dec')}
+                                />
+                           </div>
                         </div> 
                     </th>
                     <th scope="col">
                         <div className='flex items-center space-x-3'>
                            <span>KPI Name</span>
-                           <SortDescendingIcon 
-                            className='h-5 w-5 text-blue-600 text-lg hover:scale-105 cursor-pointer'
-                            onClick={()=>sort('kpiName')}
-                            />
+                           <div >
+                            <ChevronUpIcon 
+                                className='h-5 w-5 text-blue-600 text-lg hover:scale-105 cursor-pointer'
+                                onClick={()=>sort('kpiName', 'asc')}
+                                />
+                            <ChevronDownIcon 
+                                className='h-5 w-5 text-blue-600 text-lg hover:scale-105 cursor-pointer'
+                                onClick={()=>sort('kpiName', 'dec')}
+                                />
+                           </div>
                         </div> 
                     </th>
                     <th scope="col">
                         <div className='flex items-center space-x-3'>
                            <span>Plant</span>
-                           <SortDescendingIcon 
-                            className='h-5 w-5 text-blue-600 text-lg hover:scale-105 cursor-pointer'
-                            onClick={()=>sort('plant')}
-                            />
+                           <div >
+                            <ChevronUpIcon 
+                                className='h-5 w-5 text-blue-600 text-lg hover:scale-105 cursor-pointer'
+                                onClick={()=>sort('plant', 'asc')}
+                                />
+                            <ChevronDownIcon 
+                                className='h-5 w-5 text-blue-600 text-lg hover:scale-105 cursor-pointer'
+                                onClick={()=>sort('plant', 'dec')}
+                                />
+                           </div>
                         </div> 
                     </th>
                     <th scope="col">Value</th>

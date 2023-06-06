@@ -26,12 +26,6 @@ export const kpisMasterData = [
         plants:['Plant-1','Plant-2','Plant-3','SPP Plant','FPP Plant']
     },
     {
-        kpiName:'CPMU',
-        aspect:'Quality',
-        type:'General',
-        plants:['Plant-1','Plant-2','Plant-3','SPP Plant','FPP Plant']
-    },
-    {
         kpiName:'External Audit',
         aspect:'Quality',
         type:'General',
@@ -41,18 +35,6 @@ export const kpisMasterData = [
         kpiName:'NCR Closers',
         aspect:'Quality',
         type:'General',
-        plants:['Plant-1','Plant-2','Plant-3','SPP Plant','FPP Plant']
-    },
-    {
-        kpiName:'Plan Adherence',
-        aspect:'Results',
-        type:'General',
-        plants:['SPP Plant','FPP Plant']
-    },
-    {
-        kpiName:'MTTR',
-        aspect:'Results',
-        type:'Productivity',
         plants:['Plant-1','Plant-2','Plant-3','SPP Plant','FPP Plant']
     },
     {
@@ -68,17 +50,18 @@ export const kpisMasterData = [
         plants:['Plant-1','Plant-2','Plant-3','SPP Plant','FPP Plant']
     },
     {
+        kpiName:'MTTR',
+        aspect:'Results',
+        type:'Productivity',
+        plants:['Plant-1','Plant-2','Plant-3','SPP Plant']
+    },
+    {
         kpiName:'G-A Whole Chicken%',
         aspect:'Production',
         type:'General',
         plants:['Plant-1','Plant-2','Plant-3','SPP Plant']
     },
-    {
-        kpiName:'Avg House Loading Time',
-        aspect:'Results',
-        type:'Productivity',
-        plants:['SPP Plant']
-    },
+
     {
         kpiName:'Productivity(Carcass/hr)',
         aspect:'Results',
@@ -91,6 +74,31 @@ export const kpisMasterData = [
         type:'Productivity',
         plants:['Plant-1','Plant-2','Plant-3','SPP Plant']
     },
+    {
+        kpiName:'CPMU',
+        aspect:'Quality',
+        type:'General',
+        plants:['SPP Plant','FPP Plant']
+    },
+    {
+        kpiName:'Plan Adherence',
+        aspect:'Results',
+        type:'General',
+        plants:['SPP Plant','FPP Plant']
+    },
+    {
+        kpiName:'Avg House Loading Time',
+        aspect:'Results',
+        type:'Productivity',
+        plants:['SPP Plant']
+    },
+    {
+        kpiName:'Availability',
+        aspect:'Results',
+        type:'Productivity',
+        plants:['FPP Plant']
+    },
+
 ]
 
 
