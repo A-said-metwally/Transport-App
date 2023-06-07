@@ -19,7 +19,7 @@ function Slider() {
                     {arr.map((i, index)=>{
                         return (
                             <div key={index} className={`carousel-item ${i === 1 ? 'active': null}  h-full w-full`}>
-                                <Image layout='fill' src={`/Watania Manufacturing KPIs Proposal_05062023-page-0${i}.JPG`} className="d-block h-full w-full object-fill" alt={`${i}`}/>
+                                <Image layout='fill' src={`/Watania Manufacturing KPIs Proposal_05062023-page-0${i}.jpg`} className="d-block h-full w-full object-fill" alt={`${i}`}/>
                                 {/* <Image layout='fill' src={`/k${i}.JPG`} className="d-block h-full w-full object-fill" alt={`${i}`}/> */}
                             </div> //Watania Manufacturing KPIs Proposal_05062023-page-001
                             )
