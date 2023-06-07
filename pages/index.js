@@ -98,7 +98,7 @@ export default function Main() {
       <div className = ' relative flex justify-end shadow-md items-center  mt-[80px] bg-gradient-to-r from-indigo-500 to-green-400 p-5 h-[250px] text-5xl text-white '>
         <p className = 'w-[700px] leading-relaxed font-semibold font-serif'>Al Watania KPIs 2023</p>
         <div className='absolute left-32 bottom-[-103px] h-[250px] w-[250px] rounded-full shadow-md'>
-          <Image layout="fill"  src = '/kpi.jpg' alt='kpi' className='rounded-full' />
+          <Image layout="fill"  src = '/kpi.jpg' alt='kpi' className='rounded-full ' />
         </div>
       </div>
 

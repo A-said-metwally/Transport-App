@@ -1,9 +1,9 @@
 import React from 'react'
 import Aspect from './Aspect'
-import {AcademicCapIcon, ShoppingCartIcon, CalculatorIcon, VideoCameraIcon, EmojiHappyIcon} from'@heroicons/react/solid'
-import { CameraIcon } from '@heroicons/react/outline'
+import {AcademicCapIcon, CalculatorIcon, VideoCameraIcon, CogIcon} from'@heroicons/react/solid'
+import { CameraIcon, ShoppingCartIcon, EmojiHappyIcon, UserIcon } from '@heroicons/react/outline'
 
-const icons = [AcademicCapIcon, CameraIcon, ShoppingCartIcon, CalculatorIcon,  EmojiHappyIcon]
+const icons = [AcademicCapIcon, CameraIcon, ShoppingCartIcon, CogIcon,  CalculatorIcon,  UserIcon]
 const aspects = [
     {
         name:'Safety',
@@ -27,11 +27,19 @@ const aspects = [
         bg:'bg-blue-500',
         br:'border-blue-500',
         text:'text-blue-500',
-        items:['OEE', 'Fresh Plan Adherence', 'Portion & Fpp Productivity (Kg/hr)', 'G-A Whole Chicken%','Avg House Loading Time','Productivity(Carcass/hr)','Productivity(Whole/hr)']
+        items:['Fresh Plan Adherence']
+    },
+    {
+        name:'Production',
+        icon:icons[3],
+        bg:'bg-purple-600',
+        br:'border-purple-600',
+        text:'text-purple-600',
+        items:['OEE','Avg House Loading Time','Productivity(Carcass/hr)', 'Productivity(Whole/hr)', 'G-A Whole Chicken%', 'Portion & Fpp Productivity (Kg/hr)']
     },
     {
         name:'Cost',
-        icon:icons[3],
+        icon:icons[4],
         bg:'bg-orange-500',
         br:'border-orange-500',
         text:'text-orange-500',
@@ -39,7 +47,7 @@ const aspects = [
     },
     {
         name:'People',
-        icon:icons[4],
+        icon:icons[5],
         bg:'bg-gray-500',
         br:'border-gray-500',
         text:'text-gray-500',
@@ -49,7 +57,7 @@ const aspects = [
 
 function KpisAspects({height}) {
   return (
-    <div className=' container flex justify-between space-x-3 mt-[220px]'>
+    <div className=' pl-10 pr-10 flex justify-between space-x-3 mt-[220px]'>
         {aspects.map((a, index)=>{
             return (
                 <Aspect key = {index} height = {height} name = {a.name}
