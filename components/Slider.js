@@ -3,7 +3,7 @@ import React from 'react'
 
 function Slider() {
 
-    let arr = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27]
+    let arr = ['01','02','03','04','05','06','07','08','09','10','11','12','13','14','15','16','17','18','19','20','21','22','23','24','25','26','27']
   return (
         <div className=' container h-[550px] w-full mt-[150px] mb-[100px]'>
             <div id="carouselExampleCaptions" className="carousel slide carousel-fade h-full w-full" data-bs-ride="false">
@@ -19,8 +19,9 @@ function Slider() {
                     {arr.map((i, index)=>{
                         return (
                             <div key={index} className={`carousel-item ${i === 1 ? 'active': null}  h-full w-full`}>
-                                <Image layout='fill' src={`/k${i}.JPG`} className="d-block h-full w-full object-fill" alt={`${i}`}/>
-                            </div>
+                                <Image layout='fill' src={`/Watania Manufacturing KPIs Proposal_05062023-page-0${i}.JPG`} className="d-block h-full w-full object-fill" alt={`${i}`}/>
+                                {/* <Image layout='fill' src={`/k${i}.JPG`} className="d-block h-full w-full object-fill" alt={`${i}`}/> */}
+                            </div> //Watania Manufacturing KPIs Proposal_05062023-page-001
                             )
                     })}
                 </div>
