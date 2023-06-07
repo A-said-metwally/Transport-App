@@ -5,7 +5,7 @@ function Slider() {
 
     let arr = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27]
   return (
-        <div className=' container h-[550px] w-full mt-[150px] mb-[100px]'>
+        <div className=' container h-[650px] w-full mt-[150px] mb-[100px]'>
             <div id="carouselExampleCaptions" className="carousel slide carousel-fade h-full w-full" data-bs-ride="false">
                 <div className="carousel-indicators">
                 {arr.map((i, index)=>{

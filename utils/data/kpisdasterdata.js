@@ -50,10 +50,10 @@ export const kpisMasterData = [
         plants:['Plant-1','Plant-2','Plant-3','SPP Plant','FPP Plant']
     },
     {
-        kpiName:'MTTR',
+        kpiName:'Availability',
         aspect:'Results',
         type:'Productivity',
-        plants:['Plant-1','Plant-2','Plant-3','SPP Plant']
+        plants:['Plant-1','Plant-2','Plant-3','SPP Plant','FPP Plant']
     },
     {
         kpiName:'G-A Whole Chicken%',
@@ -91,12 +91,6 @@ export const kpisMasterData = [
         aspect:'Results',
         type:'Productivity',
         plants:['SPP Plant']
-    },
-    {
-        kpiName:'Availability',
-        aspect:'Results',
-        type:'Productivity',
-        plants:['FPP Plant']
     },
 
 ]

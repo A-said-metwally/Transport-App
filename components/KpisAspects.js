@@ -11,7 +11,7 @@ const aspects = [
         bg:'bg-red-500',
         br:'border-red-500',
         text:'text-red-500',
-        items:['LTI','NCR']
+        items:[]
     },
     {
         name:'Quality',
@@ -19,7 +19,7 @@ const aspects = [
         bg:'bg-green-500',
         br:'border-green-500',
         text:'text-green-500',
-        items:['CPMU','External Audit','NCR','Area Swaps']
+        items:['NCR', 'CPMU','External Audit']
     },
     {
         name:'Delivery',
@@ -27,7 +27,7 @@ const aspects = [
         bg:'bg-blue-500',
         br:'border-blue-500',
         text:'text-blue-500',
-        items:['OEE', 'Plan Adherence', 'Portion & Fpp Productivity (Kg/hr)', 'G-A Whole Chicken%','Avg House Loading Time','Productivity(Carcass/hr)','Productivity(Whole/hr)']
+        items:['OEE', 'Fresh Plan Adherence', 'Portion & Fpp Productivity (Kg/hr)', 'G-A Whole Chicken%','Avg House Loading Time','Productivity(Carcass/hr)','Productivity(Whole/hr)']
     },
     {
         name:'Cost',
@@ -35,7 +35,7 @@ const aspects = [
         bg:'bg-orange-500',
         br:'border-orange-500',
         text:'text-orange-500',
-        items:['Power Consumption','MUV','Manufacturing Expense']
+        items:['Manufacturing Expense', 'Energy Consumption','MUV']
     },
     {
         name:'People',
@@ -43,7 +43,7 @@ const aspects = [
         bg:'bg-gray-500',
         br:'border-gray-500',
         text:'text-gray-500',
-        items:['Training','Absenteeism']
+        items:[]
     },
 ]
 
