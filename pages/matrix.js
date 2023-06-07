@@ -30,14 +30,22 @@ const fetchData = async (f)=>{
     .catch(error => console.log("targets fetch error", error.message))
 }
 
-const sort = (e)=>{
-    const x = [...Matrix].sort((a, b)=>a[e].localeCompare(b[e])) // use [...] to keep the original array intact 
-    setMatrix(x)
+// const sort = (e)=>{
+//     const x = [...Matrix].sort((a, b)=>a[e].localeCompare(b[e])) // use [...] to keep the original array intact 
+//     setMatrix(x)
+// }
+
+const sort = (e, t)=>{
+    if(t === 'asc'){
+        const x = [...Matrix].sort((a, b)=>a[e] < b[e] ? -1 : 0 ) // use [...] to keep the original array intact 
+        setMatrix(x)
+    }else if(t === 'dec'){
+        const x = [...Matrix].sort((a, b)=>a[e] > b[e] ? -1 : 0 ) // use [...] to keep the original array intact 
+        setMatrix(x)
+    }
 }
 
-useEffect(()=>{
-    fetchData()
-},[])
+useEffect(()=>{fetchData()},[])
 
   return (
     <div className='overflow-x-scroll'>

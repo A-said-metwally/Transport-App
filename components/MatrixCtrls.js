@@ -22,7 +22,7 @@ function MatrixCtrls({data}) {
   return (
     <div>
         {/* controls  */}
-        <div className='h-30 mt-6 flex flex-col justify-between items-center shadow-md
+        <div className='h-30 mt-6 flex flex-col justify-center items-center shadow-md
              lg:flex-row lg:justify-between lg:items-center mb-4 w-full border-1 border-gray-300 p-2 rounded-xl'>
                <div className='flex space-x-6'>
                <div className='flex flex-col justify-center items-center 

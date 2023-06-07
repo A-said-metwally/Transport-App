@@ -13,6 +13,10 @@ function TargetCoding() {
 const [loading, setLoading] = useState(false)
 const [MatrixDt, setMatrixDt] = useState([])
 
+const months = ['--', 'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec', ]
+const [Validation, setValidation] = useState(true)
+
+
 const fetchData = async (f)=>{
     const matrixRef = collection(db, 'matrix')
     await getDocs(matrixRef)
@@ -62,6 +66,11 @@ const addTargetsData = (e)=>{
     setTargetsData([...TargetsData, e])
 }
 
+const changValidation = ()=>{
+    setValidation(!Validation)
+}
+
+
 const submitTargets = ()=>{
         setLoading(true)
         // push new targets
@@ -75,31 +84,68 @@ const submitTargets = ()=>{
         })
 }
 
+useEffect(()=>{fetchData()},[])
 
   return (
     <div className='overflow-x-scroll'>
         {loading && <Loading/>}
         <div className='container min-h-screen'>
             <h1 className='text-gray-500 shadow-md font-serif bg-gradient-to-r from-green-300 to-yellow-300 p-2 rounded-md'>Add Targets </h1>
-            <div className='flex justify-center space-x-12'>
+            {/* <div className='flex justify-center items-center space-x-12'> */}
                 {/* <TargetCtrls/> */}
-                <SelectMonth opt = {false} />
-                <button
-                    className='pl-10 pr-10 pt-2 pb-2 rounded-md border-green-600 border-1 
-                    bg-gradient-to-r from-green-300 to-yellow-300 text-xl font-semibold hover:scale-105 cursor-pointer  '
-                    onClick={()=>fetchData()}
+
+                {/* <SelectMonth opt = {false} /> */}
+                {/* <button
+                className=' rounded-md h-[40px]  bg-blue-500 text-white pl-4 pr-4 pt-2 pb-2 hover:bg-green-500 cursor-pointer'
+                onClick={()=>fetchData()}
                     >
                 View
-                </button>
+                </button> */}
+
+            {/* </div> */}
+
+            <div className='h-30 mt-[20px] flex flex-col justify-between items-center shadow-md
+             lg:flex-row lg:justify-between lg:items-center mb-4 w-full border-1 border-gray-300 p-2 rounded-xl'>
+                <div className='flex flex-col justify-center items-center 
+                 lg:flex-row lg:justify-center lg:items-between lg:space-x-5 ' >
+                    <label htmlFor="" className=' text-gray-500 font-semibold'>Select Period</label>
+                    <select 
+                        id = 'month'
+                        type="text" 
+                        name='month' 
+                        placeholder='Kpis Period' 
+                        // onChange={(e)=>setMonth(e.target.value)}
+                        className='p-2 mt-0 rounded-md w-24 bg-inherit text-center border-1
+                        border-gray-400 shadow-md' 
+                    >
+                       {months.map(m => (
+                           <option key={m} value={m} className='bg-inherit text-gray-700'>{m}</option>
+                       ))}
+                    </select>
+                </div>
+                <div className='flex items-center'>
+                    <div className='flex items-center space-x-2 mr-5'>
+                        <span className='text-lg font-semibold '>Validation</span>
+                        <div 
+                            className={`${Validation ? 'bg-green-400' : 'bg-red-400'} h-[20px] w-[40px] rounded-full
+                             border-1 border-gray-400 cursor-pointer shadow-md`}
+                            onClick={()=>changValidation()}
+                        >
+                            <div className={`${Validation ? 'ml-[20px]' : 'ml-0'} h-[19px] w-[19px] bg-blue-600 rounded-full transition-all duration-500 `}></div>   
+                        </div>
+                    </div>
+                    <button 
+                        onClick={()=>submitTargets()}
+                        className='bg-blue-500 pl-4 pr-4 pt-2 pb-2 transition duration-105 m-0
+                        cursor-pointer hover:bg-green-500 text-white  rounded-md font-bold '
+                    >
+                    Upload
+                    </button>
+                </div>
             </div>
+
             <TargetDetails data = {MatrixDt} addTargetsData = {addTargetsData}/>
             <hr />
-            <button 
-                className=' rounded-md ml-[90%] bg-blue-500 text-white pl-3 pr-3 pt-2 pb-2 hover:bg-green-500 cursor-pointer'
-                onClick={()=>submitTargets()}
-                >
-                Upload
-            </button>
 
         </div>
     </div>

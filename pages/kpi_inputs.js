@@ -157,8 +157,8 @@ useEffect(()=>{fetchData()},[])
                     </div>
                     <button 
                         onClick={submitData}
-                        className='bg-gray-300 pl-4 pr-4 pt-2 pb-2 transition duration-105 m-0
-                        cursor-pointer hover:bg-green-500 hover:text-white  rounded-md text-gray-600 font-bold '
+                        className='bg-blue-500 pl-4 pr-4 pt-2 pb-2 transition duration-105 m-0
+                        cursor-pointer hover:bg-green-500 text-white  rounded-md  font-bold '
                     >
                     Submit
                     </button>

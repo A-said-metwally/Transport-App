@@ -15,18 +15,14 @@ p{
     margin-bottom: 0 !important;
 }
 body{
-
+    /* scroll-behavior: smooth !important;
+    -webkit-scroll-behavior: smooth !important */
 }
 
-*html, body {
+*,html {
     scroll-behavior: smooth !important;
-    background-color: #06202a;
-    color: gray;
-
+    -webkit-scroll-behavior: smooth !important;
 }
-html:focus-within {
-    scroll-behavior: smooth !important;
-  }
 .navbar {
     background: none !important;
     width: 100%;
@@ -123,3 +119,6 @@ html:focus-within {
 }
 /* end about us */
 
+.main-page-ul{
+    direction: rtl;
+}
