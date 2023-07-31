@@ -4,7 +4,7 @@
 
 @layer base{
        body{
-         @apply bg-gray-100 text-gray-600 !important 
+         /* @apply bg-gray-100 text-gray-600 !important  */
        } 
 }
 
@@ -28,17 +28,15 @@ body{
     width: 100%;
 }
 .nav-link{
-    color: #4b5563 !important;
+    color: #5a5d61 !important;
 }
-.dropdown-menu{
-    background-color: #e5e7eb !important;
+.nav-link:hover{
+    color:orangered !important;
+    font-weight: 500;
 }
-.dropdown-menu a{
-    color: #4f4f50 !important;
-}
-.dropdown-menu a:hover{
-    color: white !important;
-    background-color: lightslategrey;
+
+.navbar-nav .active{
+    color:#108a00 !important
 }
 .overlay{
     background: rgba(0,0,0,0.6);
@@ -50,75 +48,7 @@ body{
 .dropdown-toggle::after{display: none !important;}
 
 
-/* start about us */
-.about-us{
-    margin-top: 30px;
-    margin-bottom: 30px;
-    padding: 0 !important;
-    display: flex;
-    justify-content: center;
-    flex-direction: column;
-}
-.discription{
-    text-align: center;
-    color: var(--font-color3);
-    padding-bottom: 20px;
-    font-size: 15px;
-}
-.spinners{
-    text-align: center;
-    margin-bottom: 10px;
-
-}
-.spinner-grow {
-    width: 1rem;
-    height: 1rem;
-}
-.about-us-wraper{
-    display: flex;
-    align-items: center;
-    justify-content: space-evenly;
-    /* flex-direction: row-reverse;  */
-
-}
-.about-us-wraper .profile{
-    width: 25%;
-    padding: 15px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    flex-direction: column;
+.carousel-item{
+    /* transition: transform 5s ease-in-out; */
 }
 
- .about-us-wraper .profile img{
-    /* height: 90px;
-    width: 90px;
-    border-radius: 50%;
-    border:1px solid var(--icon-color);
-    box-shadow: var(--tw-shadow); */
-
-}
- .about-us-wraper .profile h3,h4,a{
-    padding: 5px;
-}
-.about-us-wraper .profile h3{
-    color:var(--font-color2);
-    font-size: 20px;
-
-}
- .about-us-wraper .profile h4{
-    color:var(--font-color)
-}
- .about-us-wraper .profile a{
-    color:var(--icon-color)
-}
- .right img{
-    width: 100%;
-    height: 100%;
-    box-shadow: var(--tw-shadow);
-}
-/* end about us */
-
-.main-page-ul{
-    direction: rtl;
-}
