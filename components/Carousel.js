@@ -2,8 +2,8 @@ import React from 'react'
 
 function Carousel() {
   return (
-    <div className=' relative w-full h-[600px]'>
-        <img src="/bg2.jpg" alt="" className='w-full h-full' />
+    <div className=' relative w-full h-[600px] overflow-hidden'>
+        <img src="/bg2.jpg" alt="" className='w-full h-full animate-scale' />
         <div className='absolute top-[90px] left-[130px]'>
             <p className='bg-white text-sky-600 max-w-fit px-5 py-2 rounded-full font-bold tracking-wide '>We Are Technical Support ~</p>
             <h1 className='text-white font-serif mt-4 font-bold text-[50px]'>We Are Happy To Serve You</h1>

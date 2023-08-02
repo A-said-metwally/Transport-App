@@ -1,12 +1,13 @@
 import React from 'react'
 import ServiceMenu from './ServiceMenu'
+import Link from 'next/link'
 
 function NavBar() {
   return (
     <div className=' border-r-[1px] h-full flex flex-1 items-center pl-12'>
         <ul className='h-full flex items-center justify-start space-x-8 text-lg p-0 m-0 font-semibold '>
             <li className=' h-full relative flex items-center group hover:cursor-pointer'>
-                Home
+                <Link href='/'><a className=' no-underline text-black'>Home</a></Link> 
                 <span className=' absolute left-1/2 bottom-1 -translate-x-1/2 w-0 h-[4px] transition-all duration-3000
                     bg-gradient-to-tr from-purple-600 to-purple-300 group-hover:w-[60px] '></span>
             </li>
