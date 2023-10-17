@@ -1,9 +1,7 @@
 import React, {useEffect, useState} from 'react'
-import Carousel from '../components/Carousel'
-import Services from '../components/Services'
-import AboutCompany from '../components/AboutCompany'
-import AwesomeService from '../components/AwesomeService'
-import Testimonials from '../components/Testimonials'
+import Header from '../components/Header'
+import Responsive from '../components/Responsive'
+import Convert from '../components/Convert'
 
 
 export default function Main() {   
@@ -16,11 +14,9 @@ export default function Main() {
 
   return (
     <div className=''>
-      <Carousel/>
-      <Services/>
-      <AboutCompany/>
-      <AwesomeService/>
-      <Testimonials/>
+      {/* <Header/>
+      <Responsive/> */}
+      <Convert/>
     </div>
   )
 }

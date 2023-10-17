@@ -115,3 +115,66 @@ export const handleExportExcel = (data, title)=>{
         XLSX.writeFile(wb, `${title}.xlsx` )
   }
   
+
+//   *******************************************
+
+export const addProject = async (data)=>{
+    await fetch('/api/projects',{
+        method : 'POST',
+        body : JSON.stringify(data),
+        headers : {
+            "Content-Type": "application/json",
+            "Accept" : "application/json"
+        }
+    })
+}
+
+export const addScenario = async (data)=>{
+    const response = await fetch('/api/chat',{
+        method : 'POST',
+        body : JSON.stringify(data),
+        headers : {
+            "Content-Type": "application/json",
+            "Accept" : "application/json"
+        }
+    })
+    const res = await response.json()
+    return res
+}
+
+export const fetchProjects = async (f)=>{
+    const projectsCollection = collection(db , 'projectsDb')
+
+    await getDocs(projectsCollection)
+    .then(res => {
+        let projectsData = res.docs.map(doc =>(
+            {
+                id:doc.id,
+                ...doc.data()
+            }
+        ))
+        return projectsData
+    })
+    .then(projectsInfo =>{f(projectsInfo.map((info)=>{return info}))})
+    // .then(projectsInfo =>{setProjects(projectsInfo.map((info)=>{return info}))})
+    .catch(error => console.log("projects fetch error", error.message))
+}
+
+
+export const fetchChat = async (p, f)=>{
+    const chatCollection = collection(db , 'chatDb')
+
+    let q = query(chatCollection, where("projectName", "==" , p))
+
+    await getDocs(q)
+    .then(res => {
+        let chatData = res.docs.map(doc =>(
+            {id:doc.id, ...doc.data()}
+        ))
+        return chatData
+    })
+    .then(chatInfo =>{ f(chatInfo.map((info)=>{return info}))})
+    .catch(error => console.log("chat fetch error", error.message))
+}
+
+
