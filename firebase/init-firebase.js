@@ -7,12 +7,14 @@ import { getStorage } from "firebase/storage";
 // https://firebase.google.com/docs/web/setup#available-libraries
 
 const firebaseConfig = {
-  apiKey: "AIzaSyAC0OZqlTUU-mS5PvSRv1q7MQ650j2aqpY",
-  authDomain: "help-service-6f883.firebaseapp.com",
-  projectId: "help-service-6f883",
-  storageBucket: "help-service-6f883.appspot.com",
-  messagingSenderId: "642187702290",
-  appId: "1:642187702290:web:77e2ac70d5711e87f3a8cb"};
+  apiKey: "AIzaSyB2wJx7wkjPMAPR5o3nsD0WCYv_rnXZ5Uo",
+  authDomain: "al-watania-transport.firebaseapp.com",
+  projectId: "al-watania-transport",
+  storageBucket: "al-watania-transport.appspot.com",
+  messagingSenderId: "12810711310",
+  appId: "1:12810711310:web:81bb76b28590911605e75f",
+  measurementId: "G-DGW9LF99YB"
+};
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);

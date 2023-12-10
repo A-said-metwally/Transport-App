@@ -7,7 +7,7 @@ function MyApp({ Component, pageProps }) {
 
   return (
       <div className='  '>
-        <Head title="Converter"/>
+        <Head title="Transport App"/>
         <Component {...pageProps}   />
       </div>
   )
