@@ -3,10 +3,10 @@ import React from 'react'
 function AboutUs() {
   return (
     <div id="list-item-3" className='mt-3 bg-black flex justify-center '>
-        <div className='w-5/6 flex justify-center'>
+        <div className='sm:w-5/6 w-full flex sm:flex-row sm:justify-center flex-col-reverse items-center'>
             {/* left section */}
-            <div className=' flex flex-col justify-center items-center w-1/2 pt-4'>
-                <h1 className=' text-TextColor2 text-6xl'>Al-Watania Transport</h1>
+            <div className='sm:w-1/2 w-full flex flex-col justify-center items-center  sm:pt-4 p-3'>
+                <h1 className=' text-TextColor2 sm:text-6xl text-4xl'>Al-Watania Transport</h1>
                 {/* <img src="/norma.gif" alt="" className=' w-56 h-46' /> */}
                 {/* <h1 className=' text-white text-3xl '>Norma</h1> */}
                 <h6 className=' font-semibold text-ColorFive'>Achieve more today and be ready for the future. </h6>
@@ -28,7 +28,7 @@ function AboutUs() {
             </div>
             
             {/* right section */}
-            <div className='w-1/2'>
+            <div className='sm:w-1/2 w-full'>
                 <img src="/Capture.PNG" alt="" className=' w-full h-full'/>
             </div>
         </div>

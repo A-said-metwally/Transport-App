@@ -54,10 +54,10 @@ export default function Login() {
             <div className=' flex w-full  space-x-2 flex-row
             items-center border-b-2 border-gray-200 '>
             <input 
-              type="text" required id="user" placeholder="Enter Code"
+              type="number" required id="user" placeholder="Enter Code"
               className='p-2 placeholder:text-gray-300 w-full mt-1 text-left bg-inherit focus:outline-none text-lg'
                 value={UserCode}
-                onChange={(e)=>setUserCode(e.target.value)}
+                onChange={(e)=>setUserCode(+e.target.value)}
               />
             </div>
             <hr/>

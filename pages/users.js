@@ -25,7 +25,7 @@ function Users() {
 
     const otherUsers = [
         {
-            sapNo:'112203',
+            sapNo:112203,
             name:'Ahmed Said',
             pass:'0121081041',
             section:'CI',
@@ -33,7 +33,7 @@ function Users() {
             pages:['mainPage','hopper','uploadDate','users', 'drivers', 'personalInfo', 'driverReport']
         },
         {
-            sapNo:'456',
+            sapNo:456,
             name:'Ahmed Said',
             pass:'456-user',
             section:'CI',
@@ -41,7 +41,7 @@ function Users() {
             pages:['mainPage','hopper','uploadDate','users', 'drivers', 'personalInfo', 'driverReport']
         },
         {
-            sapNo:'123',
+            sapNo:123,
             name:'Samir',
             pass:'123-user',
             section:'Transport',
@@ -55,7 +55,7 @@ function Users() {
     const upLoad = ()=>{
         driversList.forEach(async (d)=>{
             try{
-                await addDoc(usersRef, db)
+                await addDoc(usersRef, d)
                 .then((res)=>{
                     res._key.path.segments // get respond after submit data with res._key.path.segments
                     ? (console.log('done'))
@@ -82,11 +82,11 @@ function Users() {
     }
     
 
-console.log(UsersInfo)
+// console.log(UsersInfo)
 
 useEffect(()=>{
     fetchAllUsersData()
-})
+},[])
     
   return (
     <div>

@@ -205,7 +205,7 @@ function UploadData() {
                         onChange={(e)=>{ setNewTrip({...NewTrip, backNo:e.target.value})}}
                     />
                 </div>
-                {!CheckDriver && <p className=' text-red-500 font-bold pt-4'>Driver Not Exist</p>}
+                {!CheckDriver && CheckDriver !== undefined && <p className=' text-red-500 font-bold pt-4'>Driver Not Exist</p>}
             </div>
 
             <h2 className='font-serif text-xl font-semibold text-blue-500 mt-5'>Trip Information</h2>

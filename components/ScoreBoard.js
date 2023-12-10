@@ -10,7 +10,7 @@ function ScoreBoard() {
          Up To Date Our Achievements Moment by Moment.
         </p>
 
-        <div className='w-full flex justify-between flex-wrap '>
+        <div className='w-full flex sm:flex-row sm:justify-between flex-wrap flex-col '>
           <ScoreCard title='Feed Hopper' pic='/feed2.jpg' trip='1,300' ton='85' km='23,000'/>
           <ScoreCard title='Feed Bulk' pic='/feed.jpg' trip='5,000' ton='158' km='16,000'/>
           <ScoreCard title='Coolers' pic='/vehicel.jpg' trip='126,000' ton='300' km='23,555'/>

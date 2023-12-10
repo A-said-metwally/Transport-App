@@ -13,7 +13,8 @@ function NavBar() {
     },[decryptedData])
 
   return (
-    <div className='flex items-center justify-center space-x-10 bg-stone-200 p-2 shadow-md'>
+    <div className=' flex sm:flex-row sm:items-center sm:justify-center sm:space-x-10
+        flex-col items-center bg-stone-200 p-2 shadow-md'>
         <Link href='/mainPage' className=''>
             <a className=' hover:no-underline  font-serif hover:text-orange-600 cursor-pointer text-lg
              text-orange-600 font-bold'>Main</a>
@@ -22,7 +23,7 @@ function NavBar() {
             <span className='font-serif hover:text-orange-600 cursor-pointer text-lg
                 text-gray-600 font-bold '
             >Reports</span>
-            <div className='absolute z-10 top-7 hidden group-hover:flex'>
+            <div className='absolute z-10 sm:top-7 top-3 left-[-55px] hidden group-hover:flex'>
                 <div className=' mt-[15px]  bg-stone-200 rounded-md w-[200px] 
                     p-2 flex flex-col space-y-5 border-1 border-gray-400'>
                     <Link href='/hopper' className=''>
@@ -53,7 +54,7 @@ function NavBar() {
             <span className='font-serif hover:text-orange-600 cursor-pointer text-lg
                 text-gray-600 font-bold '
             >Entries</span>
-            <div className='absolute z-10 top-7 hidden  group-hover:flex'>
+            <div className='absolute z-10 sm:top-7 top-3 left-[-55px] hidden  group-hover:flex'>
                 <div className='   mt-[15px] bg-stone-200 rounded-md w-[200px] 
                     p-2 flex flex-col space-y-5 border-1 border-gray-400'>
                     <Link href='/uploadData' className=''>

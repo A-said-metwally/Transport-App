@@ -2,7 +2,7 @@ import React from 'react'
 
 function ScoreCard({title,pic, trip, ton, km, client}) {
   return (
-        <div className=' w-1/2 p-5 hover:border-2 hover:border-orange-500 rounded-lg hover:shadow-md cursor-pointer'>
+        <div className=' lg:w-1/2 w-full p-5 hover:border-2 hover:border-orange-500 rounded-lg hover:shadow-md cursor-pointer'>
             <div className=' bg-ColorOne h-[50px] rounded-3xl'>
                 <p className=' text-white text-xl text-center font-bold p-2'> {title}</p>
             </div>
