@@ -32,7 +32,7 @@ function HopperDrivers() {
     
 
     console.log(TodayTrips)
-    useEffect(()=>{fetchTrips()},[])
+    useEffect(()=>{fetchTrips()},[DriverNo])
 
 
 

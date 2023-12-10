@@ -10,7 +10,7 @@ function NavBar() {
 
     useEffect(()=>{
         setUsersInfo(decryptedData.userInfo[0].data)
-    },[])
+    },[decryptedData])
 
   return (
     <div className='flex items-center justify-center space-x-10 bg-stone-200 p-2 shadow-md'>

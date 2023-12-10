@@ -86,7 +86,7 @@ console.log(UsersInfo)
 
 useEffect(()=>{
     fetchAllUsersData()
-},[])
+})
     
   return (
     <div>
