@@ -14,7 +14,7 @@ function AboutUs() {
                     {/* <span className='text-TextColor2 font-semibold'>NORMA </span> */}
                     Lorem ipsum dolor, sit amet consectetur adipisicing elit. Amet reprehenderit ipsa harum nam quia aperiam. 
                 </p>
-                <p className=' w-3/4 pl-4 pr-4 font-semibold text-ColorFive text-center'>
+                <p className=' sm:w-3/4 w-full sm:pl-4 sm:pr-4 font-semibold text-ColorFive text-center'>
                     {/* <span className='text-TextColor2 font-semibold'>NORMA </span> */}
                     helps its users to improve, achieve more, save more and scale. 
                 </p>

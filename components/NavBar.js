@@ -86,7 +86,7 @@ function NavBar() {
             <a className=' hover:no-underline no-underline  font-serif hover:text-orange-600 cursor-pointer text-lg
              text-gray-600 font-bold'>Master-Data</a>
         </Link>
-        {UserInfo?.sapNo === '112203' && // check if user ahmed said only
+        {UserInfo?.sapNo === 112203 && // check if user ahmed said only
             <Link href='/users' className=''>
                 <a className=' hover:no-underline no-underline  font-serif hover:text-orange-600 cursor-pointer text-lg
                 text-gray-600 font-bold'>Users</a>
