@@ -9,7 +9,7 @@ function AboutUs() {
                 <h1 className=' text-TextColor2 sm:text-6xl text-4xl text-center'>Al-Watania Transport</h1>
                 {/* <img src="/norma.gif" alt="" className=' w-56 h-46' /> */}
                 {/* <h1 className=' text-white text-3xl '>Norma</h1> */}
-                <h6 className=' font-semibold text-ColorFive'>Achieve more today and be ready for the future. </h6>
+                <h6 className=' font-semibold text-ColorFive text-center'>Achieve more today and be ready for the future. </h6>
                 <p className='text-ColorFive text-center'>
                     {/* <span className='text-TextColor2 font-semibold'>NORMA </span> */}
                     Lorem ipsum dolor, sit amet consectetur adipisicing elit. Amet reprehenderit ipsa harum nam quia aperiam. 
