@@ -49,18 +49,19 @@ function HopperDrivers({}) {
     }
     
     
-    const [TripTracking , setTripTracking] = useState(0)
 
     // update trip document in fire base
-    const updateTrip = async (tripId, newData, stepNo) => {
+    const updateTrip = async (tripId, newData) => {
         const docRef = doc(db, "hopperTripsMd", tripId);
         try{
             await updateDoc(docRef, newData)
-            .then(()=>setTripTracking(stepNo)) // change trip tracking with the number of completed steps  
+            .then(()=>{ fetchTrips(id)}) 
         }catch(error){console.log(error)}
     }
       
 
+    // track steps completed
+    let TripTracking  = DriverTrips[0]?.data.stepNo
 
     const submitData = async (step)=>{
         await fetchIpInfo() // get ip information
@@ -73,34 +74,40 @@ function HopperDrivers({}) {
                     updateTrip(tripId, {
                         exitTime:new Date(),
                         exitLocation:{city, loc},
-                        exitCounter:''
-                    }, 1)
+                        exitCounter:'',
+                        stepNo:1
+                    })
                 }else if(step === 'loadingArrivalTime'){
                     updateTrip(tripId, {
                         loadingArrivalTime:new Date(),
                         loadingLocation:{city, loc},
-                    }, 2)
+                        stepNo:2
+                    })
                 }else if(step === 'loadingDepartureTime'){
                     updateTrip(tripId, {
                         loadingDepartureTime:new Date(),
-                    }, 3)
+                        stepNo:3
+                    })
                 }else if(step === 'dispatchArrivalTime'){
                     updateTrip(tripId, {
                         dispatchArrivalTime:new Date(),
                         dispatchLocation:{city, loc},
-                    }, 4)
+                        stepNo:4
+                    })
                 }else if(step === 'dispatchDepartureTime'){
                     updateTrip(tripId, {
                         dispatchDepartureTime:new Date(),
-                    }, 5)
+                        stepNo:5
+                    })
                 }else if(step === 'comeBackTime'){
                     updateTrip(tripId, {
                         comeBackTime:new Date(),
                         comeBackCounter:'',
-                        closing:true
-                    }, 6)
+                        closing:true,
+                        stepNo:6
+                    })
                 }    
-            }else{alert('Bad Network')}
+            }else{alert('Bad Network Plz Try Again')}
         })
     }
 
@@ -139,7 +146,7 @@ function HopperDrivers({}) {
 
             {/* trip tracking */}
             {DriverTrips.length > 0 && 
-                <div className='flex flex-col justify-center mt-2 border-2 border-gray-500 rounded-md shadow-sm w-full p-5'>
+                <div className='flex flex-col justify-center mt-2 border-2 border-gray-500 rounded-md shadow-sm w-full p-2 pt-4'>
                     <TrackingBtn caption='Exit from Project'     submitData = {submitData} step = 'exitTime' stepNo = {TripTracking} no = {1}/>
                     <TrackingBtn caption='Arrival Loading'       submitData = {submitData} step = 'loadingArrivalTime' stepNo = {TripTracking} no = {2}/>
                     <TrackingBtn caption='Departure Loading'     submitData = {submitData} step = 'loadingDepartureTime' stepNo = {TripTracking} no = {3}/>
@@ -149,10 +156,6 @@ function HopperDrivers({}) {
                 </div>            
             }
 
-            {/* inter values (counters, qty) */}
-            <div>
-
-            </div>
         </div>
     </div>
   )
