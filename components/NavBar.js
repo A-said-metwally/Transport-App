@@ -3,6 +3,7 @@ import React from 'react'
 import { useEffect } from 'react'
 import { useState } from 'react'
 import secureLocalStorage from 'react-secure-storage'
+import {UserIcon, KeyIcon} from '@heroicons/react/outline'
 
 function NavBar() {
     const [UserInfo, setUsersInfo] = useState()
@@ -12,11 +13,12 @@ function NavBar() {
         setUsersInfo(decryptedData.userInfo[0].data)
     },[decryptedData])
 
-  return (
-    <div className=' flex sm:flex-row sm:items-center sm:justify-center sm:space-x-10
+    return (
+    <div className='relative flex sm:flex-row sm:items-center sm:justify-center sm:space-x-10
         flex-col items-center bg-stone-200 p-2 shadow-md'>
+       
         <Link href='/mainPage' className=''>
-            <a className=' hover:no-underline  font-serif hover:text-orange-600 cursor-pointer text-lg
+            <a className=' hover:no-underline  font-serif  hover:text-orange-600 cursor-pointer text-lg
              text-orange-600 font-bold'>Main</a>
         </Link>
         <div className=' relative group'>
@@ -92,8 +94,23 @@ function NavBar() {
                 text-gray-600 font-bold'>Users</a>
             </Link>        
         }
+        {UserInfo?.sapNo === 112203 && // check if user ahmed said only
+            <Link href='/viewLocation' className=''>
+                <a className=' hover:no-underline no-underline  font-serif hover:text-orange-600 cursor-pointer text-lg
+                text-gray-600 font-bold'>Location</a>
+            </Link>        
+        }
 
-    </div>
+            <div className='  sm:absolute flex items-center justify-center right-5 sm:pr-5 h-10 cursor-pointer hover:scale-105'>
+                <Link href=''>
+                    <>
+                        <UserIcon className=' h-7 w-7 text-blue-600 '/>
+                        <p className=' text-lg font-semibold font-serif text-blue-600'>{UserInfo?.name}</p>                
+                    </>
+                </Link>
+            </div>
+
+        </div>
     )
 }
 

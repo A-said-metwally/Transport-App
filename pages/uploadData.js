@@ -5,9 +5,18 @@ import driversDf from '../masterData/drivers.json'
 import { db } from '../firebase/init-firebase'
 import {collection, addDoc ,getDocs, query, where} from 'firebase/firestore'
 import Loading from '../components/Loading'
+import secureLocalStorage from 'react-secure-storage'
 
 
 function UploadData() {
+
+    const [UserInfo, setUsersInfo] = useState()
+    let decryptedData = secureLocalStorage.getItem('sessionInfo') // get encrypted user data 
+
+    // get user information
+    useEffect(()=>{
+        setUsersInfo(decryptedData.userInfo[0].data)
+    },[decryptedData])
 
     const LoadingArea = ['--','حائل','وادى عنيرة','وطنية 1','وطنية 2','ينبع التجارى']
     const DispatchArea = ['--','وادى عنيرة','وطنية 1','وطنية 2']
@@ -31,8 +40,9 @@ function UploadData() {
         feedName:'',
         status:'new',
         extendedTo:'',
-        userName:'Admin',
-        stampTime: ''
+        userName:'',
+        stampTime: '',
+        closing:false
     })
 
 
@@ -63,8 +73,9 @@ function UploadData() {
             feedName:'',
             status:'new',
             extendedTo:'',
-            userName:'Admin',  
-            stampTime: ''      
+            userName:'',  
+            stampTime: '',
+            closing:false     
         })
         
       }
@@ -95,7 +106,7 @@ function UploadData() {
         setLoading(true)
         try{
             const hopperRef = collection(db, "hopperTripsMd") // hooper trips main data
-            await addDoc(hopperRef, {...NewTrip, stampTime:new Date()})
+            await addDoc(hopperRef, {...NewTrip, stampTime:new Date(), userName:UserInfo.name})
             .then((res)=>{
                 res._key.path.segments // get respond after submit data with res._key.path.segments
                 ? (clear(), setLoading(false))
@@ -104,6 +115,11 @@ function UploadData() {
         }catch(error) {console.error('Error adding document: ', error)}
     }
 
+    // validation steps
+    // check if waybill no not repeated
+    // check that every driver has just one waybill
+    // check that driver has been closed him waybills
+    // on extend case show extended trip flow 
 
 
   return (

@@ -1,33 +1,31 @@
 import React, { useState, useEffect } from 'react'
 import { db } from '../../firebase/init-firebase'
-import {collection, addDoc ,getDocs, query, where} from 'firebase/firestore'
+import {collection, addDoc ,getDocs, query, where, updateDoc, doc} from 'firebase/firestore'
 import Loading from '../../components/Loading'
 import Header from '../../components/Header'
-import TrakingBtn from '../../components/TrakingBtn'
 import { useRouter } from 'next/router'
 import secureLocalStorage from 'react-secure-storage'
+import { fetchIpInfo } from '../../utils/location'
+import TrackingBtn from '../../components/TrakingBtn'
 
 
 function HopperDrivers({}) {
 
     const [UserInfo, setUsersInfo] = useState()
     let decryptedData = secureLocalStorage.getItem('sessionInfo') // get encrypted user data 
-
+    // get user information
     useEffect(()=>{
         setUsersInfo(decryptedData.userInfo[0].data)
     },[decryptedData])
 
-
     const router = useRouter()
     const { id } = router.query
 
-    // console.log(id)
-    // console.log(UserInfo)
 
     const [DriverTrips, setDriverTrips] = useState([])
     const [Loading, setLoading] = useState(false)
 
-    
+    // fetch driver trips
     const fetchTrips = async (driverNo)=>{
         const hopperTrips = collection(db, 'hopperTripsMd')
         setLoading(true)
@@ -38,61 +36,124 @@ function HopperDrivers({}) {
                     let driverTrips = res.docs.map(doc =>(
                         {
                             id:doc.id,
-                            ...doc.data()
+                            data:doc.data()
                         }
                     ))
-                    return (setDriverTrips(driverTrips), setLoading(false))
+                    // filter on only open trips
+                    const openTrips = driverTrips.filter((t)=>{return t.data.closing === false})
+                    return (setDriverTrips(openTrips), setLoading(false))
             })
             // .then(trips =>{ setDriverTrips(trips)})
         }
         catch(error) {console.error('Error fetching data: ', error)}
     }
     
+    
+    const [TripTracking , setTripTracking] = useState(0)
+
+    // update trip document in fire base
+    const updateTrip = async (tripId, newData, stepNo) => {
+        const docRef = doc(db, "hopperTripsMd", tripId);
+        try{
+            await updateDoc(docRef, newData)
+            .then(()=>setTripTracking(stepNo)) // change trip tracking with the number of completed steps  
+        }catch(error){console.log(error)}
+    }
+      
+
+
+    const submitData = async (step)=>{
+        await fetchIpInfo() // get ip information
+        .then((res)=>{
+            if(res?.status === 200){
+                const {ip, country, city, loc} = res.data
+                const tripId = DriverTrips[0].id
+
+                if(step === 'exitTime'){
+                    updateTrip(tripId, {
+                        exitTime:new Date(),
+                        exitLocation:{city, loc},
+                        exitCounter:''
+                    }, 1)
+                }else if(step === 'loadingArrivalTime'){
+                    updateTrip(tripId, {
+                        loadingArrivalTime:new Date(),
+                        loadingLocation:{city, loc},
+                    }, 2)
+                }else if(step === 'loadingDepartureTime'){
+                    updateTrip(tripId, {
+                        loadingDepartureTime:new Date(),
+                    }, 3)
+                }else if(step === 'dispatchArrivalTime'){
+                    updateTrip(tripId, {
+                        dispatchArrivalTime:new Date(),
+                        dispatchLocation:{city, loc},
+                    }, 4)
+                }else if(step === 'dispatchDepartureTime'){
+                    updateTrip(tripId, {
+                        dispatchDepartureTime:new Date(),
+                    }, 5)
+                }else if(step === 'comeBackTime'){
+                    updateTrip(tripId, {
+                        comeBackTime:new Date(),
+                        comeBackCounter:'',
+                        closing:true
+                    }, 6)
+                }    
+            }else{alert('Bad Network')}
+        })
+    }
+
 
     useEffect(()=>{fetchTrips(id)},[id])
 
-
-
-
   return (
-    <div className='max-w-md  flex flex-col items-center mx-auto'>
+    <div className='max-w-md   flex flex-col items-center mx-auto '>
         <Header title={''}/>
-        <div  className=' bg-yellow-200 rounded-xl border-1 border-orange-400 shadow-md w-full p-4 '>
-            {/* trip information */}
-            <div className=' text-lg font-semibold tracking-wider text-gray-600 font-serif border-b-[3px] border-dotted border-gray-500 pb-4'>
-                    <p className=' font-bold text-2xl capitalize pb-3'>{UserInfo?.name}</p>
-                    {DriverTrips?.length === 0 && !Loading && <p className=' text-center text-lg font-bold'>No Available Trip</p>}
-                    {Loading && <p className=' text-center text-xl text-green-600 font-bold '>... Loading</p>}
-                    {DriverTrips.length >0 &&
-                        <div className='flex '>
-                            <div className=' text-red-500 font-semibold w-1/3'>
-                                <p >Waybill No</p>
-                                <p >From</p>
-                                <p >Destination</p>
-                                <p >Payload</p>
+        <div className='w-full p-2'>
+            <div  className=' bg-blue-800 rounded-xl border-1 border-gray-400 shadow-md w-full p-4 '>
+                {/* trip information */}
+                <div className=' text-lg font-semibold tracking-wider text-gray-100 font-serif border-b-[3px] border-dotted border-gray-100 pb-4'>
+                        <p className=' font-bold text-2xl capitalize pb-3'>{UserInfo?.name}</p>
+                        {DriverTrips?.length === 0 && !Loading && <p className=' text-center text-lg font-bold text-white'>No Available Trip</p>}
+                        {Loading && <p className=' text-center text-xl text-gray-100 font-bold '>Loading ...</p>}
+                        {DriverTrips.length >0 &&
+                            <div className='flex '>
+                                <div className=' text-yellow-300 font-semibold w-1/2'>
+                                    <p >Waybill No</p>
+                                    <p >From</p>
+                                    <p >Destination</p>
+                                    <p >Payload</p>
+                                </div>
+                                <div className='w-1/2'>
+                                    <p >:  {DriverTrips[0].data.waybillNo}</p>
+                                    <p >:  {DriverTrips[0].data.loadingArea}</p>
+                                    <p >:  {DriverTrips[0].data.dispatchArea}</p>
+                                    <p >:  {DriverTrips[0].data.feedName}</p>
+                                </div>
                             </div>
-                            <div className=''>
-                                <p >:  {DriverTrips[0].waybillNo}</p>
-                                <p >:  {DriverTrips[0].loadingArea}</p>
-                                <p >:  {DriverTrips[0].dispatchArea}</p>
-                                <p >:  {DriverTrips[0].feedName}</p>
-                            </div>
-                        </div>
-                    }
+                        }
+
+                </div>
+            </div>
+
+            {/* trip tracking */}
+            {DriverTrips.length > 0 && 
+                <div className='flex flex-col justify-center mt-2 border-2 border-gray-500 rounded-md shadow-sm w-full p-5'>
+                    <TrackingBtn caption='Exit from Project'     submitData = {submitData} step = 'exitTime' stepNo = {TripTracking} no = {1}/>
+                    <TrackingBtn caption='Arrival Loading'       submitData = {submitData} step = 'loadingArrivalTime' stepNo = {TripTracking} no = {2}/>
+                    <TrackingBtn caption='Departure Loading'     submitData = {submitData} step = 'loadingDepartureTime' stepNo = {TripTracking} no = {3}/>
+                    <TrackingBtn caption='Arrival Dispatching'   submitData = {submitData} step = 'dispatchArrivalTime' stepNo = {TripTracking} no = {4}/>
+                    <TrackingBtn caption='Departure Dispatching' submitData = {submitData} step = 'dispatchDepartureTime' stepNo = {TripTracking} no = {5}/>
+                    <TrackingBtn caption='Comeback to Project'   submitData = {submitData} step = 'comeBackTime' end='end'  stepNo = {TripTracking} no = {6}/>
+                </div>            
+            }
+
+            {/* inter values (counters, qty) */}
+            <div>
 
             </div>
         </div>
-
-        {/* trip tracking */}
-        <div className='flex flex-col justify-center mt-2 border-2 border-gray-500 rounded-md shadow-sm w-full p-5'>
-            <TrakingBtn caption='Exit from Project'/>
-            <TrakingBtn caption='Arrival Loading'/>
-            <TrakingBtn caption='Departure Loading'/>
-            <TrakingBtn caption='Arrival Dispatching'/>
-            <TrakingBtn caption='Departure Dispatching'/>
-            <TrakingBtn caption='Comeback to Project' end='end'/>
-        </div>
-
     </div>
   )
 }

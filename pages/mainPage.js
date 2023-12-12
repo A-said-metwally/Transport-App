@@ -3,6 +3,7 @@ import Header from '../components/Header'
 import NavBar from '../components/NavBar'
 import ScoreBoard from '../components/ScoreBoard'
 import AboutUs from '../components/AboutUs'
+import Footer from '../components/Footer'
 
 function MainPage() {
   return (
@@ -11,6 +12,7 @@ function MainPage() {
         <NavBar/>
         <AboutUs/>
         <ScoreBoard/>
+        <Footer/>
     </div>
   )
 }
