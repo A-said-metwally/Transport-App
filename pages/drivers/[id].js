@@ -138,7 +138,7 @@ function HopperDrivers({}) {
             </div>
             <div  className='mt-2 bg-blue-800 rounded-xl border-1 border-gray-400 shadow-md w-full p-4 '>
                 {/* trip information */}
-                <div className=' text-lg font-semibold tracking-wider text-gray-100 font-serif border-b-[3px] border-dotted border-gray-100 '>
+                <div className=' text-lg font-semibold tracking-wider text-gray-100 font-serif border-b-[3px] border-dotted border-gray-100 pb-3'>
                         {DriverTrips?.length === 0 && !Loading && <p className=' text-center text-lg font-bold text-white'>No Available Trip</p>}
                         {Loading && <p className=' text-center text-xl text-gray-100 font-bold '>Loading ...</p>}
                         {DriverTrips.length >0 &&

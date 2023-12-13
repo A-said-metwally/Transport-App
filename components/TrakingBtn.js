@@ -6,7 +6,7 @@ function TrackingBtn({caption, end, submitData, step, stepNo, no}) {
     const [ShowConfirmation, setShowConfirmation] = useState(false)
     
     const [InputVal, setInputVal] = useState()
-
+    
     let msg ;
     switch (currentBtn) { // to display input field and msg 
         case 1:

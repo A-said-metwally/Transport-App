@@ -107,7 +107,7 @@ function UploadData() {
         setLoading(true)
         try{
             const hopperRef = collection(db, "hopperTripsMd") // hooper trips main data
-            await addDoc(hopperRef, {...NewTrip, stampTime:new Date(), userName:UserInfo.name})
+            await addDoc(hopperRef, {...NewTrip, stampTime:new Date(), userName:UserInfo.name, stepNo:0})
             .then((res)=>{
                 res._key.path.segments // get respond after submit data with res._key.path.segments
                 ? (clear(), setLoading(false))
@@ -146,7 +146,7 @@ function UploadData() {
                         <input 
                             id="newWaybillNo" type="number" placeholder='New Waybill No' value={NewTrip.waybillNo}
                             className=' border-1 border-orange-400 rounded-md shadow-md p-2 text-lg focus:outline-none text-blue-600 font-semibold text-center'
-                            onChange={(e)=>setNewTrip({...NewTrip, waybillNo:+e.target.value})}
+                            onChange={(e)=>setNewTrip({...NewTrip, waybillNo:e.target.value})}
                         />
                     </div>
                     { !TripStatus && // display when tripe Status is extended
@@ -194,7 +194,7 @@ function UploadData() {
                     <input 
                         id="driverNo" type="text" placeholder='Inter Driver No' value={NewTrip.driverNo}
                         className=' border-1 border-orange-400 rounded-md shadow-md p-2 text-lg focus:outline-none text-blue-600 font-semibold'
-                        onChange={(e)=>{ setNewTrip({...NewTrip, driverNo: +e.target.value})}}
+                        onChange={(e)=>{ setNewTrip({...NewTrip, driverNo: e.target.value})}}
                         onBlur={(e)=>{ getDriverInfo(e)}}
                     />
                 </div>
