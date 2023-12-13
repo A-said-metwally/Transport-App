@@ -1,22 +1,55 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import Header from '../components/Header'
-import {RefreshIcon, ChevronDownIcon, ChevronUpIcon,  DocumentDownloadIcon, SortDescendingIcon} from '@heroicons/react/outline'
+import {RefreshIcon, DocumentDownloadIcon, SortDescendingIcon} from '@heroicons/react/outline'
 import { handleExportExcel } from '../firebase/actions'
 import HopperData from '../components/HopperData'
 import NavBar from '../components/NavBar'
+import Loading from '../components/Loading'
 
-function Hopper() {
-    const FeedName = ['','ذرة','صويا','نخالة']
+import { db } from '../firebase/init-firebase'
+import {collection, addDoc ,getDocs, query, where, updateDoc, doc} from 'firebase/firestore'
 
+
+function HopperReport() {
+    // const FeedName = ['','ذرة','صويا','نخالة']
+
+    const [Data, setData] = useState([])
+    const [loading, setLoading] = useState(false)
+
+
+    const fetchData = async ()=>{
+        const hopperTrips = collection(db, 'hopperTripsMd')
+        setLoading(true)
+        try{
+            // let q = query(hopperTrips, where("driverNo", "==" , driverNo))
+            await getDocs(hopperTrips)
+            .then(res => {
+                    let trips = res.docs.map(doc =>(
+                        {
+                            id:doc.id,
+                            ...doc.data()
+                        }
+                    ))
+                    return trips
+            })
+            .then(trips =>{
+                setData(trips)
+                setLoading(false)
+            })
+        }
+        catch(error) {console.error('Error fetching data: ', error)}
+    }
+
+useEffect(()=>{fetchData()},[])
 
   return (
-    <div className=''>
+    <div className='relative'>
         <Header title={''}/>
         <NavBar/>
 
-        <div className='container mt-4'>
+        {loading && <Loading/>}
+        <div className='container mt-4 '>
         <h2 className='text-gray-500 font-serif text-xxl'>Hopper Follow-Up Report</h2>
-
         {/* controls period feed type untreated data */}
         <div className='flex justify-between items-center '>
             <div className='mt-4 px-5 sm:flex sm:items-center sm:space-x-12'>
@@ -54,11 +87,11 @@ function Hopper() {
                 </div>
         </div>
         
-        <HopperData />
+        <HopperData data = {Data} />
     </div>
 
     </div>
   )
 }
 
-export default Hopper
+export default HopperReport

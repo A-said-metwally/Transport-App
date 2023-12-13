@@ -7,16 +7,14 @@ import { useRouter } from 'next/router'
 import secureLocalStorage from 'react-secure-storage'
 import { fetchIpInfo } from '../../utils/location'
 import TrackingBtn from '../../components/TrakingBtn'
+import { BellIcon, ChartBarIcon, KeyIcon, StarIcon} from '@heroicons/react/outline'
 
 
 function HopperDrivers({}) {
 
     const [UserInfo, setUsersInfo] = useState()
     let decryptedData = secureLocalStorage.getItem('sessionInfo') // get encrypted user data 
-    // get user information
-    useEffect(()=>{
-        setUsersInfo(decryptedData.userInfo[0].data)
-    },[decryptedData])
+
 
     const router = useRouter()
     const { id } = router.query
@@ -63,7 +61,7 @@ function HopperDrivers({}) {
     // track steps completed
     let TripTracking  = DriverTrips[0]?.data.stepNo
 
-    const submitData = async (step)=>{
+    const submitData = async (step, value)=>{
         await fetchIpInfo() // get ip information
         .then((res)=>{
             if(res?.status === 200){
@@ -74,7 +72,7 @@ function HopperDrivers({}) {
                     updateTrip(tripId, {
                         exitTime:new Date(),
                         exitLocation:{city, loc},
-                        exitCounter:'',
+                        exitCounter: +value,
                         stepNo:1
                     })
                 }else if(step === 'loadingArrivalTime'){
@@ -86,6 +84,7 @@ function HopperDrivers({}) {
                 }else if(step === 'loadingDepartureTime'){
                     updateTrip(tripId, {
                         loadingDepartureTime:new Date(),
+                        loadedQty: +value,
                         stepNo:3
                     })
                 }else if(step === 'dispatchArrivalTime'){
@@ -102,7 +101,7 @@ function HopperDrivers({}) {
                 }else if(step === 'comeBackTime'){
                     updateTrip(tripId, {
                         comeBackTime:new Date(),
-                        comeBackCounter:'',
+                        comeBackCounter: +value,
                         closing:true,
                         stepNo:6
                     })
@@ -112,16 +111,34 @@ function HopperDrivers({}) {
     }
 
 
-    useEffect(()=>{fetchTrips(id)},[id])
+    useEffect(()=>{
+        if(!decryptedData) return
+        setUsersInfo(decryptedData.userInfo[0].data) // get user information
+        fetchTrips(id) // fetch trips
+    },[id])
 
   return (
     <div className='max-w-md   flex flex-col items-center mx-auto '>
         <Header title={''}/>
         <div className='w-full p-2'>
-            <div  className=' bg-blue-800 rounded-xl border-1 border-gray-400 shadow-md w-full p-4 '>
+            {/* driver main section */}
+            <div className='bg-gray-300 flex justify-between w-full p-2'>
+                <p className=' font-bold text-2xl tracking-wider text-gray-600 font-serif capitalize'>{UserInfo?.name}</p>
+                <div className='w-1/3 flex item-center justify-between'>
+                    <div className=' relative h-full flex justify-center items-center cursor-pointer
+                     hover:animate-bounce hover:scale-105 focus:animate-bounce focus:scale-105 ' >
+                        <BellIcon className='h-7 w-7 text-blue-600 '/>
+                        <span className=' absolute top-[-5px] left-[-10px] text-red-500 font-semibold text-lg '>2</span>
+                    </div>
+                    <ChartBarIcon className='h-7 w-7 text-blue-600 cursor-pointer hover:animate-bounce
+                     hover:scale-105 focus:animate-bounce focus:scale-105'/>
+                    <KeyIcon className='h-7 w-7 text-blue-600 cursor-pointer hover:animate-bounce
+                     hover:scale-105 focus:animate-bounce focus:scale-105'/>
+                </div>
+            </div>
+            <div  className='mt-2 bg-blue-800 rounded-xl border-1 border-gray-400 shadow-md w-full p-4 '>
                 {/* trip information */}
-                <div className=' text-lg font-semibold tracking-wider text-gray-100 font-serif border-b-[3px] border-dotted border-gray-100 pb-4'>
-                        <p className=' font-bold text-2xl capitalize pb-3'>{UserInfo?.name}</p>
+                <div className=' text-lg font-semibold tracking-wider text-gray-100 font-serif border-b-[3px] border-dotted border-gray-100 '>
                         {DriverTrips?.length === 0 && !Loading && <p className=' text-center text-lg font-bold text-white'>No Available Trip</p>}
                         {Loading && <p className=' text-center text-xl text-gray-100 font-bold '>Loading ...</p>}
                         {DriverTrips.length >0 &&
@@ -140,7 +157,14 @@ function HopperDrivers({}) {
                                 </div>
                             </div>
                         }
-
+                </div>
+                {/* driver rate */}
+                <div className='w-full flex items-center space-x-3 mt-3'>
+                    <StarIcon className=' text-yellow-300 h-7 w-7'/>
+                    <StarIcon className=' text-yellow-300 h-7 w-7'/>
+                    <StarIcon className=' text-yellow-300 h-7 w-7'/>
+                    <StarIcon className=' text-yellow-300 h-7 w-7'/>
+                    <StarIcon className=' text-gray-500 h-7 w-7'/>
                 </div>
             </div>
 

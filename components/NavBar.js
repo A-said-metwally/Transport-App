@@ -28,7 +28,7 @@ function NavBar() {
             <div className='absolute z-10 sm:top-7 top-3 left-[-55px] hidden group-hover:flex'>
                 <div className=' mt-[15px]  bg-stone-200 rounded-md w-[200px] 
                     p-2 flex flex-col space-y-5 border-1 border-gray-400'>
-                    <Link href='/hopper' className=''>
+                    <Link href='/hopperReport' className=''>
                         <a className=' hover:no-underline hover:font-semibold no-underline font-serif hover:text-orange-600 cursor-pointer text-lg
                     text-gray-600  '>Hopper </a>
                     </Link>

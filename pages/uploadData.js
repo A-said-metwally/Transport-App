@@ -97,6 +97,7 @@ function UploadData() {
         }
     }
     
+
     // upload data fn
     const upLoad = async ()=>{
         if(!validate() ){
@@ -130,7 +131,7 @@ function UploadData() {
         <div className='container mt-4'>
 
             <h2 className='font-serif text-xl font-semibold text-blue-500'>Waybill Information</h2>
-            <div className='mt-4 px-5 sm:flex sm:items-center sm:justify-between'>
+            <div className='mt-4 px-5 flex sm:flex-row sm:items-center sm:justify-between flex-col'>
                 <div className='sm:flex sm:items-center sm:space-x-3'>
                     <div className='flex flex-col'>
                         <label htmlFor="waybillDate" className='text-gray-600'>Waybill Date</label>
@@ -193,7 +194,7 @@ function UploadData() {
                     <input 
                         id="driverNo" type="text" placeholder='Inter Driver No' value={NewTrip.driverNo}
                         className=' border-1 border-orange-400 rounded-md shadow-md p-2 text-lg focus:outline-none text-blue-600 font-semibold'
-                        onChange={(e)=>{ setNewTrip({...NewTrip, driverNo:e.target.value})}}
+                        onChange={(e)=>{ setNewTrip({...NewTrip, driverNo: +e.target.value})}}
                         onBlur={(e)=>{ getDriverInfo(e)}}
                     />
                 </div>
