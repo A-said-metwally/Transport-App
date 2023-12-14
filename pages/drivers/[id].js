@@ -8,6 +8,7 @@ import secureLocalStorage from 'react-secure-storage'
 import { fetchIpInfo } from '../../utils/location'
 import TrackingBtn from '../../components/TrakingBtn'
 import { BellIcon, ChartBarIcon, KeyIcon, StarIcon} from '@heroicons/react/outline'
+import DriverDashBoard from '../../components/DriverDashBoard'
 
 
 function HopperDrivers({}) {
@@ -22,6 +23,9 @@ function HopperDrivers({}) {
 
     const [DriverTrips, setDriverTrips] = useState([])
     const [Loading, setLoading] = useState(false)
+
+    const [ShowReport, setShowReport] = useState(false)
+    const closeReport = ()=>{setShowReport(false)}
 
     // fetch driver trips
     const fetchTrips = async (driverNo)=>{
@@ -110,6 +114,18 @@ function HopperDrivers({}) {
         })
     }
 
+    // driver evaluation component
+    const evaluation = (80 * 5/100).toFixed()
+    const viewEval = ()=>{
+        let arr = []
+        for(let i = 0; i < evaluation; i++){
+            arr.push(<StarIcon className=' text-yellow-300 h-7 w-7'/>)
+         }
+        for(let i = 0; i < 5 - evaluation; i++){
+        arr.push(<StarIcon className=' text-gray-500 h-7 w-7'/>)
+        }
+          return arr
+    }
 
     useEffect(()=>{
         if(!decryptedData) return
@@ -118,9 +134,9 @@ function HopperDrivers({}) {
     },[id])
 
   return (
-    <div className='max-w-md   flex flex-col items-center mx-auto '>
+    <div className='max-w-md flex flex-col items-center mx-auto '>
         <Header title={''}/>
-        <div className='w-full p-2'>
+        <div className='relative w-full p-2'>
             {/* driver main section */}
             <div className='bg-gray-300 flex justify-between w-full p-2'>
                 <p className=' font-bold text-2xl tracking-wider text-gray-600 font-serif capitalize'>{UserInfo?.name}</p>
@@ -131,7 +147,9 @@ function HopperDrivers({}) {
                         <span className=' absolute top-[-5px] left-[-10px] text-red-500 font-semibold text-lg '>2</span>
                     </div>
                     <ChartBarIcon className='h-7 w-7 text-blue-600 cursor-pointer hover:animate-bounce
-                     hover:scale-105 focus:animate-bounce focus:scale-105'/>
+                     hover:scale-105 focus:animate-bounce focus:scale-105'
+                     onClick={()=>setShowReport(true)}
+                     />
                     <KeyIcon className='h-7 w-7 text-blue-600 cursor-pointer hover:animate-bounce
                      hover:scale-105 focus:animate-bounce focus:scale-105'/>
                 </div>
@@ -160,16 +178,12 @@ function HopperDrivers({}) {
                 </div>
                 {/* driver rate */}
                 <div className='w-full flex items-center space-x-3 mt-3'>
-                    <StarIcon className=' text-yellow-300 h-7 w-7'/>
-                    <StarIcon className=' text-yellow-300 h-7 w-7'/>
-                    <StarIcon className=' text-yellow-300 h-7 w-7'/>
-                    <StarIcon className=' text-yellow-300 h-7 w-7'/>
-                    <StarIcon className=' text-gray-500 h-7 w-7'/>
+                    {viewEval()}
                 </div>
             </div>
 
             {/* trip tracking */}
-            {DriverTrips.length > 0 && 
+            {DriverTrips.length > 0 && !ShowReport &&
                 <div className='flex flex-col justify-center mt-2 border-2 border-gray-500 rounded-md shadow-sm w-full p-2 pt-4'>
                     <TrackingBtn caption='Exit from Project'     submitData = {submitData} step = 'exitTime' stepNo = {TripTracking} no = {1}/>
                     <TrackingBtn caption='Arrival Loading'       submitData = {submitData} step = 'loadingArrivalTime' stepNo = {TripTracking} no = {2}/>
@@ -179,6 +193,8 @@ function HopperDrivers({}) {
                     <TrackingBtn caption='Comeback to Project'   submitData = {submitData} step = 'comeBackTime' end='end'  stepNo = {TripTracking} no = {6}/>
                 </div>            
             }
+
+            { ShowReport && <DriverDashBoard close = {closeReport} evaluation = {viewEval}/>}
 
         </div>
     </div>

@@ -218,7 +218,7 @@ function UploadData() {
                     }
                 </div>
                 {/* select trip type */}
-                <div className='flex space-x-10 sm:ml-[100px] pt-[35px]'>
+                <div className='flex sm:space-x-10 space-x-5 sm:ml-[100px] pt-[35px]'>
                     <div className=' flex items-center space-x-2 text-xl text-gray-500 font-semibold'>
                         <label htmlFor="new">New</label>
                         <input type="radio" id='new' name='new' className='h-5 w-5' value={NewTrip.status}
