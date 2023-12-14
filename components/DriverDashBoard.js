@@ -17,6 +17,7 @@ function DriverDashBoard({close, evaluation}) {
                 >X</button>
             </div>
 
+            {/* select month */}
             <div className='mt-4 flex justify-between items-center flex-wrap '>
                 {months.map((m, index)=>{
                     return (
@@ -32,6 +33,7 @@ function DriverDashBoard({close, evaluation}) {
 
             <Separator/>
 
+            {/* evaluation section */}
             <div className='w-full mt-5 flex items-center justify-between'>
                 <div className='flex items-center space-x-3'>
                     {evaluation()}
@@ -40,22 +42,23 @@ function DriverDashBoard({close, evaluation}) {
             </div>
             
             <Separator/>
-
+            
+            {/* summary */}
             <div className='w-full flex items-center justify-between mt-5'>
-                <div className='w-1/3 flex flex-col items-center justify-between'>
+                <div className='w-1/3 flex flex-col items-center justify-center'>
                     <ShoppingCartIcon className='h-9 w-9 text-gray-200 pb-2'/>
                     <p className='font-semibold text-xl text-gray-200'>Total Trips</p>
-                    <span className=' text-gray-200 text-2xl font-mono p-2'>50</span>
+                    <span className=' text-gray-200 text-2xl font-mono p-2 text-center'>50</span>
                 </div>
-                <div className='w-1/3 flex flex-col items-center justify-between'>
+                <div className='w-1/3 flex flex-col items-center justify-center'>
                     <CalculatorIcon className='h-9 w-9 text-green-300 pb-2'/>
                     <p className='font-semibold text-xl text-green-300'>Distance</p>
-                    <span className=' text-green-300 text-2xl font-mono p-2'>1560 Km</span>
+                    <span className=' text-green-300 text-2xl font-mono p-2 text-center'>1560 Km</span>
                 </div>
-                <div className='w-1/3 flex flex-col items-center justify-between'>
+                <div className='w-1/3 flex flex-col items-center justify-center'>
                     <ScaleIcon className='h-9 w-9 text-yellow-300 pb-2'/>
                     <p className='font-semibold text-xl text-yellow-300'>Tons</p>
-                    <span className=' text-yellow-300 text-2xl font-mono p-2'>950 ton</span>
+                    <span className=' text-yellow-300 text-2xl font-mono p-2 text-center'>950 ton</span>
                 </div>
             </div>
 
