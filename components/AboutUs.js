@@ -9,14 +9,13 @@ function AboutUs() {
                 <h1 className=' text-TextColor2 sm:text-6xl text-4xl text-center'>Al-Watania Transport</h1>
                 {/* <img src="/norma.gif" alt="" className=' w-56 h-46' /> */}
                 {/* <h1 className=' text-white text-3xl '>Norma</h1> */}
-                <h6 className=' font-semibold text-ColorFive text-center'>Achieve more today and be ready for the future. </h6>
-                <p className='text-ColorFive text-center'>
-                    {/* <span className='text-TextColor2 font-semibold'>NORMA </span> */}
-                    Lorem ipsum dolor, sit amet consectetur adipisicing elit. Amet reprehenderit ipsa harum nam quia aperiam. 
-                </p>
-                <p className=' sm:w-3/4 w-full sm:pl-4 sm:pr-4 font-semibold text-ColorFive text-center'>
-                    {/* <span className='text-TextColor2 font-semibold'>NORMA </span> */}
-                    helps its users to improve, achieve more, save more and scale. 
+                <h6 className=' font-semibold text-ColorFive text-center text-xl'>Achieve More Today And Be Ready For The Future. </h6>
+                <p className='text-ColorFive text-center leading-10 text-xl'>
+                    <span className='text-TextColor2 font-semibold'>Al-Watania Transport  </span>
+                    is one of the Al-Watania Poultry Holding companies that works in the field of transportation, 
+                    as we seek to provide the best services for transporting raw materials and products to all parts of the Kingdom 
+                    of Saudi Arabia and to always achieve the goals and vision of the senior management with the latest means and methods 
+                    of transporting goods and company employees. 
                 </p>
                 <button className=' mt-3 pl-10 pr-10 pt-2 pb-2 rounded-full font-bold
                  bg-TextColor2 text-gray-900 hover:bg-ColorOne hover:text-slate-50

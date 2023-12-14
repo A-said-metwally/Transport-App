@@ -6,7 +6,7 @@ function ScoreBoard() {
     <div className='container mx-auto flex flex-col items-center justify-center'>
 
         <h1 className='text-4xl text-ColorOne font-bold mt-12'>Our Score Board</h1>
-        <p className=' text-ColorThree text-center font-semibold w-2/4 leading-8 pt-2 f'>
+        <p className=' text-gray-600 text-center font-bold text-lg tracking-wider p-4 w-2/4 leading-8 pt-2 f'>
          Up To Date Our Achievements Moment by Moment.
         </p>
 

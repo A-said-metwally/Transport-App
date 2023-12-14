@@ -13,15 +13,12 @@ function UploadData() {
     const [UserInfo, setUsersInfo] = useState()
     let decryptedData = secureLocalStorage.getItem('sessionInfo') // get encrypted user data 
 
-    // get user information
-    useEffect(()=>{
-        setUsersInfo(decryptedData.userInfo[0].data)
-    },[decryptedData])
 
     const LoadingArea = ['--','حائل','وادى عنيرة','وطنية 1','وطنية 2','ينبع التجارى']
     const DispatchArea = ['--','وادى عنيرة','وطنية 1','وطنية 2']
     const FeedName = ['--','ذرة','صويا','نخالة']
 
+    const [Trips, setTrips] = useState([])
     const [TripStatus, setTripStatus] = useState(true) 
     const [CheckDriver, setCheckDriver ] = useState()
 
@@ -45,10 +42,59 @@ function UploadData() {
         closing:false
     })
 
+    // fetch trips data
+    const fetchTrips = async ()=>{
+        const hopperTrips = collection(db, 'hopperTripsMd')
+        setLoading(true)
+        try{
+         await getDocs(hopperTrips)
+            .then(res => {
+                    let trips = res.docs.map(doc =>(
+                        {
+                            id:doc.id,
+                            ...doc.data()
+                        }
+                    ))
+                    return trips
+            })
+            .then((trips)=>{
+                return (setTrips(trips), setLoading(false))
+            })
+        }
+        catch(error) {console.error('Error fetching data: ', error)}
+    }
 
+
+    // verify date 
+    const dateVerify = (e)=>{
+        const selectedDate = new Date(e).toDateString()
+        const today = new Date().toDateString()
+        selectedDate !== today
+        ? (setNewTrip({...NewTrip, waybillDate: ''}, alert('Date Must Be Today')))
+        : null
+    } 
+
+    // validate waybill no if exist and not repeated
+    let wayBillsList = []
+    const wayBills = ()=>{
+        Trips.map((t)=>{wayBillsList.push(t.waybillNo)})
+        return wayBillsList
+    }
+    wayBills()
+
+
+    const waybillVerify = (e)=>{
+        const val = + e.target.value
+        const index = wayBillsList.indexOf(val)
+        index >= 0
+        ? (setNewTrip({...NewTrip, waybillNo: ''}, alert('This Waybill Number Already Exist, Plz Check Again')))
+        : null
+    }
+
+    
     // get driver information & complete remained data
-    const getDriverInfo = (d)=>{
-        const comNo = d.target.value
+    const getDriverInfo = (e)=>{
+        const comNo = e.target.value
         const driverInfo = driversDf.filter((n)=>{return n.COM === +comNo})[0]
         if(driverInfo){
             setCheckDriver(true)
@@ -60,6 +106,16 @@ function UploadData() {
         }
     }
     
+    // check that every driver has just one waybill
+    const driverVerify = (e)=>{
+        const driverNo = e.target.value
+        const openedTrips = Trips.filter((t)=>{return t.driverNo === driverNo && t.closing === false})
+        openedTrips.length > 0 // has opened trips 
+        ? (setNewTrip({...NewTrip, driverNo: '', driverName:'', sideNo:'', backNo:''}, alert('This Driver Has Opened Trips, Plz Contact Him To Close It')))
+        : getDriverInfo(e)
+    }
+
+    // clear user form
     function clear(){
         setNewTrip({
             waybillDate:'',
@@ -96,7 +152,6 @@ function UploadData() {
             }
         }
     }
-    
 
     // upload data fn
     const upLoad = async ()=>{
@@ -116,15 +171,15 @@ function UploadData() {
         }catch(error) {console.error('Error adding document: ', error)}
     }
 
-    // validation steps
-    // check if waybill no not repeated
-    // check that every driver has just one waybill
-    // check that driver has been closed him waybills
-    // on extend case show extended trip flow 
+
+    useEffect(()=>{
+        fetchTrips()
+        setUsersInfo(decryptedData.userInfo[0].data)
+    },[])
 
 
   return (
-    <div >
+    <div className=' relative'>
         <Header title={'Hopper Upload Data'}/>
         <NavBar/>
         {loading && <Loading/>}
@@ -139,6 +194,7 @@ function UploadData() {
                             id="waybillDate" type="date" placeholder='Tripe Date' value={NewTrip.waybillDate}
                             className=' border-1 border-orange-400 rounded-md shadow-md p-2 text-lg focus:outline-none text-blue-600 font-semibold'
                             onChange={(e)=>setNewTrip({...NewTrip, waybillDate:e.target.value})}
+                            onBlur={(e)=>dateVerify(e.target.value)}
                         />
                     </div>
                     <div className='flex flex-col'>
@@ -146,7 +202,8 @@ function UploadData() {
                         <input 
                             id="newWaybillNo" type="number" placeholder='New Waybill No' value={NewTrip.waybillNo}
                             className=' border-1 border-orange-400 rounded-md shadow-md p-2 text-lg focus:outline-none text-blue-600 font-semibold text-center'
-                            onChange={(e)=>setNewTrip({...NewTrip, waybillNo:e.target.value})}
+                            onChange={(e)=>setNewTrip({...NewTrip, waybillNo:+ e.target.value})}
+                            onBlur={(e)=>waybillVerify(e)} // verify if waybill no is exist
                         />
                     </div>
                     { !TripStatus && // display when tripe Status is extended
@@ -161,7 +218,7 @@ function UploadData() {
                     }
                 </div>
                 {/* select trip type */}
-                <div className='flex space-x-10 ml-[100px] pt-[35px]'>
+                <div className='flex space-x-10 sm:ml-[100px] pt-[35px]'>
                     <div className=' flex items-center space-x-2 text-xl text-gray-500 font-semibold'>
                         <label htmlFor="new">New</label>
                         <input type="radio" id='new' name='new' className='h-5 w-5' value={NewTrip.status}
@@ -182,6 +239,9 @@ function UploadData() {
                             }} 
                         />
                     </div>
+                    <div className=' flex items-center space-x-2 text-xl text-gray-500 font-semibold'>
+                            <button className=' bg-blue-500 p-1 px-3 text-white rounded-md border-2 hover:border-red-500 '>Edit</button>
+                    </div>
 
                 </div>
             </div>
@@ -195,7 +255,7 @@ function UploadData() {
                         id="driverNo" type="text" placeholder='Inter Driver No' value={NewTrip.driverNo}
                         className=' border-1 border-orange-400 rounded-md shadow-md p-2 text-lg focus:outline-none text-blue-600 font-semibold'
                         onChange={(e)=>{ setNewTrip({...NewTrip, driverNo: e.target.value})}}
-                        onBlur={(e)=>{ getDriverInfo(e)}}
+                        onBlur={(e)=>{ driverVerify(e)}}
                     />
                 </div>
                 <div className='flex flex-col'>

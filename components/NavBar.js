@@ -10,8 +10,8 @@ function NavBar() {
     let decryptedData = secureLocalStorage.getItem('sessionInfo') // get encrypted user data 
 
     useEffect(()=>{
-        setUsersInfo(decryptedData.userInfo[0].data)
-    },[decryptedData])
+        setUsersInfo(decryptedData?.userInfo[0].data)
+    },[])
 
     return (
     <div className='relative flex sm:flex-row sm:items-center sm:justify-center sm:space-x-10
@@ -82,7 +82,7 @@ function NavBar() {
 
         <Link href='' className=''>
             <a className=' hover:no-underline no-underline  font-serif hover:text-orange-600 cursor-pointer text-lg
-             text-gray-600 font-bold'>Dashboard</a>
+             text-gray-600 font-bold'>Visual Management</a>
         </Link>
         <Link href='' className=''>
             <a className=' hover:no-underline no-underline  font-serif hover:text-orange-600 cursor-pointer text-lg

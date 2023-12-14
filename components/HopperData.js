@@ -13,7 +13,7 @@ function HopperData({data}) {
         exitTime:'Exit Time',
         exitCounter:'Exit Counter',
         loadingArea:'Loading Area',
-        dispatchArea:'dispatch Area',
+        dispatchArea:'Dispatch Area',
         feedName:'Feed Name',
         loadingArrivalTime:'Loading Arrival Time',
         loadingDepartureTime:'Loading Departure Time',
@@ -23,6 +23,7 @@ function HopperData({data}) {
         comeBackTime: 'ComeBack Time',
         comeBackCounter:'ComBack Counter',
         distance:'Distance',
+        fuel:'Fuel Consumption',
         tripTime:'Trip Time',
         status:'Status',
         extendedTo:'Extend To',
@@ -50,6 +51,15 @@ function HopperData({data}) {
         return newTime
     }
     
+    const calcDistance = (dt)=>{
+        const comeBack = dt.comeBackCounter
+        const exit = dt.exitCounter
+        if(comeBack && exit){
+            return comeBack - exit 
+        }else{
+            return 0
+        }
+    }
 
 
   return (
@@ -93,16 +103,19 @@ function HopperData({data}) {
                         <td className=' pt-2 pb-1 group-hover:text-blue-600 text-center '>{d.feedName}</td>
                         <td className=' pt-2 pb-1 group-hover:text-blue-600 text-center '>{convertTime(d.loadingArrivalTime)}</td>
                         <td className=' pt-2 pb-1 group-hover:text-blue-600 text-center '>{convertTime(d.loadingDepartureTime)}</td>
-                        <td className=' pt-2 pb-1 group-hover:text-blue-600 text-center text-center '>{d.loadedQty}</td>
+                        <td className=' pt-2 pb-1 group-hover:text-blue-600 text-center '>{d.loadedQty}</td>
                         <td className=' pt-2 pb-1 group-hover:text-blue-600 text-center '>{convertTime(d.dispatchArrivalTime)}</td>
                         <td className=' pt-2 pb-1 group-hover:text-blue-600 text-center '>{convertTime(d.dispatchDepartureTime)}</td>
                         <td className=' pt-2 pb-1 group-hover:text-blue-600 text-center '>{convertTime(d.comeBackTime)}</td>
                         <td className=' pt-2 pb-1 group-hover:text-blue-600 text-center '>{d.comeBackCounter}</td>
-                        <td className=' pt-2 pb-1 group-hover:text-blue-600 text-center '>{d.comeBackCounter - d.exitCounter + '  Km'}</td>
+                        <td className=' pt-2 pb-1 group-hover:text-blue-600 text-center '>{calcDistance(d) + '  Km'}</td>
+                        <td className=' pt-2 pb-1 group-hover:text-blue-600 text-center '>{(calcDistance(d) / 2.5).toFixed() + ' L'}</td>
                         <td className=' pt-2 pb-1 group-hover:text-blue-600 text-center '>{'trip time'}</td>
                         <td className=' pt-2 pb-1 group-hover:text-blue-600 text-center '>{d.status}</td>
                         <td className=' pt-2 pb-1 group-hover:text-blue-600 text-center '>{d.extendedTo}</td>
-                        <td className=' pt-2 pb-1 group-hover:text-blue-600 text-center '>{d.closing? 'Closed' : 'Inprogress'}</td>
+                        <td className=' pt-2 pb-1 group-hover:text-blue-600 text-center '
+                            style={{color:`${d.closing ? 'green':'#c98304'}`}}
+                        >{d.closing? 'Closed' : 'Inprogress'}</td>
                         <td className=' pt-2 pb-1 group-hover:text-blue-600 text-center '>{d.userName}</td>
                     </tr>
                 ))}
