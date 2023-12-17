@@ -188,11 +188,11 @@ function UploadData() {
             <h2 className='font-serif text-xl font-semibold text-blue-500'>Waybill Information</h2>
             <div className='mt-4 px-5 flex sm:flex-row sm:items-center sm:justify-between flex-col'>
                 <div className='sm:flex sm:items-center sm:space-x-3'>
-                    <div className='flex flex-col'>
+                    <div className='flex flex-col bg-yellow-300'>
                         <label htmlFor="waybillDate" className='text-gray-600'>Waybill Date</label>
                         <input 
                             id="waybillDate" type="date" placeholder='Tripe Date' value={NewTrip.waybillDate}
-                            className=' border-1 border-orange-400 rounded-md shadow-md p-2 text-lg focus:outline-none text-blue-600 font-semibold'
+                            className='w-full border-1 border-orange-400 rounded-md shadow-md p-2 text-lg focus:outline-none text-blue-600 font-semibold'
                             onChange={(e)=>setNewTrip({...NewTrip, waybillDate:e.target.value})}
                             onBlur={(e)=>dateVerify(e.target.value)}
                         />

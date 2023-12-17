@@ -66,7 +66,7 @@ useEffect(()=>{fetchData()},[])
                         <label htmlFor="toDate" className='text-gray-600'>To Date</label>
                         <input 
                             id="toDate" type="date" placeholder=''
-                            className=' border-1 border-orange-400 rounded-md shadow-md p-2 text-lg focus:outline-none text-blue-600'
+                            className='w-full border-1 border-orange-400 rounded-md shadow-md p-2 text-lg focus:outline-none text-blue-600'
                         />
                     </div>
                 </div>
