@@ -53,13 +53,13 @@ useEffect(()=>{fetchData()},[])
         <div className='container mt-4 '>
             <h2 className='text-gray-500 font-serif text-xxl'>Hopper Follow-Up Report</h2>
             {/* controls period feed type untreated data */}
-            <div className='w-full bg-yellow-200flex sm:flex-row flex-col sm:justify-between items-center '>
-                <div className='mt-4 px-5 sm:flex sm:items-center sm:space-x-12'>
+            <div className='w-full flex sm:flex-row flex-col sm:justify-between items-center '>
+                <div className='w-full mt-4 px-5 sm:flex sm:items-center sm:space-x-12'>
                     <div className='flex flex-col'>
                         <label htmlFor="fromDate" className='text-gray-600'>From Date</label>
                         <input 
                             id="fromDate" type="date" placeholder=''
-                            className=' border-1 border-orange-400 rounded-md shadow-md p-2 text-lg focus:outline-none text-blue-600'
+                            className='w-full border-1 border-orange-400 rounded-md shadow-md p-2 text-lg focus:outline-none text-blue-600'
                         />
                     </div>
                     <div className='flex flex-col'>

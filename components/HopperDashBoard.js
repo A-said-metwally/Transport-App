@@ -7,11 +7,11 @@ import SummaryCompTwo from './SummaryCompTwo'
 
 function HopperDashBoard({hide}) {
   return (
-    <div className=' absolute z-10 top-0 left-0 right-0 bottom-0 min-h-fit w-full bg-[#2f4f4f] opacity-95 p-[80px]'>
-        <div className=' relative flex items-center space-x-5 '>
+    <div className=' absolute z-10 top-0 left-0 right-0 bottom-0 min-h-fit w-full bg-[#2f4f4f] opacity-95 sm:p-[80px] '>
+        <div className=' relative flex items-center space-x-5 p-10'>
             <DocumentReportIcon className='h-10 w-10 text-gray-300'/>
             <h1 className='text-gray-200 font-serif'>Hopper Summary ...</h1>
-            <button className=' absolute right-1 px-2 text-gray-200 text-xl border-2 border-gray-200
+            <button className=' absolute right-2 px-2 text-gray-200 text-xl border-2 border-gray-200
              rounded-lg font-semibold hover:text-red-400'
              onClick={()=>hide()}
              >X</button>
