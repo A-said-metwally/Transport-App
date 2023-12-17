@@ -188,7 +188,7 @@ function UploadData() {
             <h2 className='font-serif text-xl font-semibold text-blue-500'>Waybill Information</h2>
             <div className='mt-4 px-5 flex sm:flex-row sm:items-center sm:justify-between flex-col'>
                 <div className='sm:flex sm:items-center sm:space-x-3'>
-                    <div className='flex flex-col bg-yellow-300'>
+                    <div className='flex flex-col'>
                         <label htmlFor="waybillDate" className='text-gray-600'>Waybill Date</label>
                         <input 
                             id="waybillDate" type="date" placeholder='Tripe Date' value={NewTrip.waybillDate}
