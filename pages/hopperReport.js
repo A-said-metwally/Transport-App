@@ -70,7 +70,7 @@ useEffect(()=>{fetchData()},[])
                         />
                     </div>
                 </div>
-                <div className='w-full flex justify-center space-x-3 pt-5'>
+                <div className='flex justify-center space-x-3 pt-5'>
                         <button 
                             // onClick={filterData}
                             className=' pl-4 pr-4 pt-2 pb-2 transition duration-105 m-0
