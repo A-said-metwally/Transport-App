@@ -1,7 +1,7 @@
 import React from 'react'
 import {DesktopComputerIcon, PencilIcon} from '@heroicons/react/outline'
 
-function UsersTable({UsersInfo}) {
+function UsersTable({UsersInfo, viewUserPages}) {
 
     const styleOne = `pt-5 pb-4 group-hover:text-blue-600 text-gray-500 font-semibold text-xl`
 
@@ -53,7 +53,7 @@ function UsersTable({UsersInfo}) {
                                 <span className = {`${styleOne}`}>{d.routeTo}</span> 
                             </td>
                             <td  className='text-center py-3' >
-                                <span className = {`${styleOne} `}>
+                                <span className = {`${styleOne} `} onClick={()=>viewUserPages(d.pages)}>
                                     <DesktopComputerIcon className='h-6 pl-5'/>
                                 </span> 
                             </td>

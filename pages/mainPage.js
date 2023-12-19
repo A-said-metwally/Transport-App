@@ -22,7 +22,6 @@ function MainPage() {
     return ()=>{getHopperTrips()}
   },[])
 
-  console.log(HopperTrips)
   return (
     <div className=''>
         <Header title={''}/>

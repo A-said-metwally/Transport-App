@@ -13,6 +13,7 @@ function NavBar() {
         setUsersInfo(decryptedData?.userInfo[0].data)
     },[])
 
+
     return (
     <div className='relative flex sm:flex-row sm:items-center sm:justify-center sm:space-x-10
         flex-col items-center bg-stone-200 p-2 shadow-md'>

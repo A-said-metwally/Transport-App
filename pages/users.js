@@ -7,20 +7,15 @@ import {collection, addDoc ,getDocs, query, where} from 'firebase/firestore'
 import UsersTable from '../components/UsersTable'
 import AddNewUser from '../components/AddNewUser'
 import { PlusCircleIcon, SearchIcon } from '@heroicons/react/outline'
+import UserPages from '../components/UserPages'
 
 
 function Users() {
 
-    const usersRef = collection(db, "usersDb") 
-
     const [UsersInfo, setUsersInfo] = useState([])
 
-
-    const sections = ['--','CI','Transport','Hopper', 'Coolers']
-    const pages = ['--', 'mainPage','hopper','uploadDate','users', 'drivers', 'personalInfo', 'driverReport']
-
     const [ShowAddSec, setShowAddSec] = useState(false)
-
+    const [ShowUserPages, setShowUserPages] = useState(false)
 
     const driversList = drivers.map((d)=>{
         return {
@@ -29,49 +24,30 @@ function Users() {
                 pass:`${d.COM}-driver`, 
                 section:'Hopper', 
                 routeTo:`/drivers/${d.COM}`,
-                pages:['drivers', 'personalInfo', 'driverReport']
+                pages:[{type:'Entries', name:'drivers', link:`/drivers/${d.COM}`}]
             }
     })
 
-    const otherUsers = [
-        {
-            sapNo:112203,
-            name:'Ahmed Said',
-            pass:'0121081041',
-            section:'CI',
-            routeTo:'/mainPage',
-            pages:['mainPage','hopper','uploadDate','users', 'drivers', 'personalInfo', 'driverReport']
-        },
-        {
-            sapNo:456,
-            name:'Ahmed Said',
-            pass:'456-user',
-            section:'CI',
-            routeTo:'/mainPage',
-            pages:['mainPage','hopper','uploadDate','users', 'drivers', 'personalInfo', 'driverReport']
-        },
-        {
-            sapNo:123,
-            name:'Samir',
-            pass:'123-user',
-            section:'Transport',
-            routeTo:'/uploadData',
-            pages:['hopper','uploadDate', 'personalInfo', 'driverReport']
-        },
-        
-    ]
 
-    // upload data
+    const viewUserPages = (e)=>{
+        setShowUserPages(true)
+        console.log('pages are',e)
+    }
+
+    const usersRef = collection(db, "usersDb") 
+
     const upLoad = ()=>{
-        driversList.forEach(async (d)=>{
-            try{
-                await addDoc(usersRef, d)
-                .then((res)=>{
-                    res._key.path.segments // get respond after submit data with res._key.path.segments
-                    ? (console.log('done'))
-                    : alert('Bad Network Plz Try Again')
-                })
-            }catch(error) {console.error('Error adding document: ', error)}
+        driversList.map(async (d)=>{
+                try{
+                    await addDoc(usersRef, d)
+                    .then((res)=>{
+                        if(res._key.path.segments){ // get respond after submit data with res._key.path.segments
+                            console.log('done')
+                        }else{
+                            alert('Bad Network Plz Try Again')
+                        } 
+                    })
+                }catch(error) {console.error('Error adding document: ', error)}
         })
     }
 
@@ -91,20 +67,18 @@ function Users() {
         .catch(error => console.log("users fetch error", error.message))
     }
     
-
-// console.log(UsersInfo)
-
-useEffect(()=>{
-    fetchAllUsersData()
-},[])
+    useEffect(()=>{fetchAllUsersData()},[])
     
   return (
-    <div>
+    <div className=' relative h-full w-full '>
         <Header title={''}/>
         <NavBar/>
-        <div className='container mt-4'>
-            {/* <button onClick={()=>upLoad()} className='bg-green-500 p-4'>click</button> */}
 
+        {ShowUserPages && <UserPages close = {()=>setShowUserPages(false)}/>}
+
+        <div className='container mt-4'>
+
+            {/* <button onClick={()=>upLoad()}>click</button> */}
             {!ShowAddSec && 
                 <div className='w-full flex items-center justify-between'>
                     <div className='flex items-center space-x-3 hover:bg-gray-200 rounded-xl hover:shadow-md px-3 py-2 
@@ -123,10 +97,9 @@ useEffect(()=>{
                 </div>
             }
 
-            {ShowAddSec && <AddNewUser sections = {sections} pages = {pages} close = {()=>setShowAddSec(false)}/> }
+            {ShowAddSec && <AddNewUser close = {()=>setShowAddSec(false)}/> }
             
-            {!ShowAddSec && <UsersTable UsersInfo = {UsersInfo}/>}
-            
+            {!ShowAddSec && <UsersTable UsersInfo = {UsersInfo} viewUserPages = {viewUserPages}/>}
         </div>
     </div>
   )
