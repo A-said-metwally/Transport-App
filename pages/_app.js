@@ -6,7 +6,7 @@ import '../styles/globals.css'
 function MyApp({ Component, pageProps }) {
 
   return (
-      <div className='  '>
+      <div>
         <Head title="Transport App"/>
         <Component {...pageProps}   />
       </div>

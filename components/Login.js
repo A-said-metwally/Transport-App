@@ -2,17 +2,16 @@ import React, {useEffect, useState} from 'react'
 import Loading from '../components/Loading'
 import {useRouter} from 'next/router'
 import { fetchUserData } from '../firebase/actions'
-import { encrypt, today } from '../utils/verifyLogin'
-
+import { encrypt } from '../utils/verifyLogin'
 
 
 export default function Login() {
+
   const [UserCode , setUserCode] = useState("")
   const [UserPass , setUserPass] = useState('')
   const [DataValidation, setDataValidation] = useState(true)
   const [loading , setLoading] = useState(false)
   
-
   const router = useRouter()
 
   function viewErrorMsg(){
@@ -31,11 +30,12 @@ export default function Login() {
      .then(()=>{verify() })
      .catch(error => console.log(error.message)) 
     }
-
+    
     function verify(){
-      if(UserPass === userInfo[0].data.pass){  
-        encrypt(userInfo, today) // encrypt user information,set session date & save it in session storage
-        const routePage = userInfo[0].data.routeTo // get page info to route it
+      if(UserPass === userInfo[0].pass){  
+        // encrypt user information,set session date & save it in session storage
+        encrypt({...userInfo[0]}) 
+        const routePage = userInfo[0].routeTo // get page info to route it
         router.push(`${routePage}`)
       }else{ setLoading(false), setUserCode(""), setUserPass("") ,viewErrorMsg() }
     }

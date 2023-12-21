@@ -10,7 +10,7 @@ function NavBar() {
     let decryptedData = secureLocalStorage.getItem('sessionInfo') // get encrypted user data 
 
     useEffect(()=>{
-        setUsersInfo(decryptedData?.userInfo[0].data)
+        setUsersInfo(decryptedData)
     },[])
 
 
@@ -106,7 +106,7 @@ function NavBar() {
                 <Link href=''>
                     <>
                         <UserIcon className=' h-7 w-7 text-blue-600 '/>
-                        <p className=' text-lg font-semibold font-serif text-blue-600'>{UserInfo?.name}</p>                
+                        <p className=' text-lg font-semibold font-serif text-blue-600'>{UserInfo?.data.name}</p>                
                     </>
                 </Link>
             </div>

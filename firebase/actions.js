@@ -28,7 +28,7 @@ export const fetchUserData = async (userCode, f)=>{
         let userData = res.docs.map(doc =>(
             {
                 id:doc.id,
-                data:doc.data()
+                ...doc.data()
             }
         ))
         return userData
